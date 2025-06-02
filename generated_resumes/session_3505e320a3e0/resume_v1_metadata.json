@@ -1,0 +1,47 @@
+{
+  "session_id": "session_3505e320a3e0",
+  "version": 1,
+  "match_score": 92.0,
+  "ats_score": 95.9,
+  "total_word_count": 248,
+  "generation_time": 67.85645270347595,
+  "model_used": "gpt-4-turbo-preview",
+  "api_calls_made": 4,
+  "tokens_used": 10357,
+  "metadata": {
+    "job_title": "Senior Software Engineer",
+    "company": "TechCorp",
+    "focus_areas": [
+      "technical_skills",
+      "leadership"
+    ],
+    "language_style": "professional"
+  },
+  "sections": {
+    "summary": {
+      "content": "Senior Software Engineer with 7+ years of expertise in building scalable backend systems and REST APIs handling 10M+ daily requests. AWS Certified Solutions Architect specializing in Python microservices architecture and cloud-native applications. Proven track record of leading engineering teams and optimizing system performance while mentoring junior developers.",
+      "order": 1,
+      "word_count": 47
+    },
+    "experience": {
+      "content": "Senior Software Engineer | DataCorp | Jan 2021 - Present\n• Architected and deployed microservices-based API platform processing 10M+ daily requests using Python, FastAPI, and AWS, achieving 99.99% uptime\n• Led migration of monolithic application to containerized microservices using Docker, reducing deployment time by 65%\n• Mentored team of 5 junior developers, implementing code review practices that reduced production bugs by 40%\n• Optimized PostgreSQL database queries and implemented caching, improving API response times by 75%\n\nBackend Engineer | TechStart Inc | Mar 2019 - Dec 2020\n• Developed RESTful APIs using Flask and Python, serving 2M+ daily active users\n• Designed and implemented scalable database architecture using PostgreSQL and MongoDB\n• Reduced AWS infrastructure costs by 35% through optimization of cloud resources\n• Collaborated with frontend team to integrate React applications with backend services",
+      "order": 2,
+      "word_count": 135
+    },
+    "skills": {
+      "content": "Technical Skills: Python, REST APIs, AWS, Docker, PostgreSQL, Microservices\nTools & Technologies: FastAPI, Flask, Django, React, MongoDB, Git, CI/CD\nSoft Skills: Team Leadership, Technical Mentoring, System Design, Problem Solving",
+      "order": 3,
+      "word_count": 29
+    },
+    "education": {
+      "content": "B.S. Computer Science | Technical University | 2018\nAdvanced Database Systems, Distributed Systems",
+      "order": 4,
+      "word_count": 13
+    },
+    "certifications": {
+      "content": "AWS Certified Solutions Architect - Associate: Expertise in designing distributed systems on AWS (2022)\nDocker Certified Associate: Professional certification in containerization and orchestration (2021)",
+      "order": 5,
+      "word_count": 24
+    }
+  }
+}

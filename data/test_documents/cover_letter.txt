@@ -1,0 +1,9 @@
+
+Dear Hiring Manager,
+
+I am writing to express my interest in the Software Engineer position at your company.
+With 5 years of experience in web development, I believe I would be a great fit.
+
+Best regards,
+John Doe
+        

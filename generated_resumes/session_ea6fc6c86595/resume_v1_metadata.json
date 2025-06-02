@@ -1,0 +1,47 @@
+{
+  "session_id": "session_ea6fc6c86595",
+  "version": 1,
+  "match_score": 92.0,
+  "ats_score": 95.9,
+  "total_word_count": 252,
+  "generation_time": 68.0716335773468,
+  "model_used": "claude-3-5-sonnet-20241022",
+  "api_calls_made": 4,
+  "tokens_used": 10512,
+  "metadata": {
+    "job_title": "Senior Software Engineer",
+    "company": "TechCorp",
+    "focus_areas": [
+      "technical_skills",
+      "leadership"
+    ],
+    "language_style": "professional"
+  },
+  "sections": {
+    "summary": {
+      "content": "Senior Software Engineer with 7+ years of expertise in building scalable backend systems using Python and microservices architecture. AWS Certified Solutions Architect specializing in API development and optimization, with proven success reducing response times by 40%. Demonstrated technical leadership experience mentoring teams and architecting solutions handling 10M+ daily requests.",
+      "order": 1,
+      "word_count": 49
+    },
+    "experience": {
+      "content": "Senior Software Engineer | Current Tech Solutions | Jan 2021 - Present\n• Architected and led development of microservices-based backend system processing 10M+ daily requests using Python, FastAPI, and AWS services\n• Optimized REST API performance resulting in 40% reduction in response time and 30% decrease in computing costs\n• Led team of 5 developers implementing CI/CD pipelines with Docker and AWS, improving deployment efficiency by 25%\n• Designed and implemented PostgreSQL database architecture supporting 500K+ daily transactions with 99.99% uptime\n\nSoftware Engineer | Tech Innovations Inc | Jun 2019 - Dec 2020\n• Developed and maintained REST APIs using Python Flask, serving 2M+ monthly users\n• Implemented containerized microservices architecture using Docker, reducing deployment time by 60%\n• Created automated testing framework increasing code coverage from 65% to 95%",
+      "order": 2,
+      "word_count": 130
+    },
+    "skills": {
+      "content": "Technical Skills: Python, REST API Development, AWS, Docker, PostgreSQL, Microservices Architecture\nTools & Technologies: FastAPI, Flask, Django, React, MongoDB, Git, Jenkins, Kubernetes\nSoft Skills: Technical Leadership, Team Mentoring, Problem Solving, System Design",
+      "order": 3,
+      "word_count": 32
+    },
+    "education": {
+      "content": "Bachelor of Science in Computer Science | Technical University | 2016\nAdvanced Database Systems, Distributed Systems Architecture",
+      "order": 4,
+      "word_count": 17
+    },
+    "certifications": {
+      "content": "AWS Certified Solutions Architect - Associate: Expertise in designing distributed systems on AWS (2022)\nDocker Certified Associate: Professional certification in containerization and orchestration (2021)",
+      "order": 5,
+      "word_count": 24
+    }
+  }
+}

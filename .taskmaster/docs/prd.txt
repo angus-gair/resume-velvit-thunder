@@ -1,0 +1,291 @@
+## Product Requirements Document (PRD)
+
+### Project: AI-Powered Resume Generation System (Step 4)
+
+**Version:** 1.0  
+**Date:** December 2024  
+**Status:** In Development
+
+### 1. Executive Summary
+
+The Resume Generation System is Step 4 of a 6-step workflow that creates tailored resumes using AI analysis. The system orchestrates multiple AI calls to analyze job requirements, extract candidate qualifications, and generate optimized resume content.
+
+### 2. Objectives
+
+- Create an AI-powered resume generation backend (`04-resume-generation.py`)
+- Support multiple AI providers (OpenAI, Anthropic, open source)
+- Generate ATS-optimized resumes tailored to specific job requirements
+- Maintain high quality scores (85%+ match, 90%+ ATS compatibility)
+
+### 3. Key Features
+
+1. **Data Orchestration**
+   - Retrieve job descriptions, documents, and configuration from previous steps
+   - Organize data for AI processing
+
+2. **AI-Powered Analysis**
+   - Extract skills and experiences from candidate documents
+   - Match candidate profile to job requirements
+   - Generate tailored content
+   - Optimize for ATS systems
+
+3. **Template Integration**
+   - Apply generated content to HTML templates
+   - Support customizable resume formats
+
+4. **Quality Assurance**
+   - Calculate match and ATS scores
+   - Validate generated content
+   - Provide detailed generation metrics
+
+### 4. Technical Requirements
+
+- **Language:** Python 3.x
+- **AI Providers:** OpenAI API, Anthropic API, Open Source (future)
+- **Database:** SQLite with existing schema
+- **Dependencies:** openai, anthropic, sqlite3, argparse
+- **Output:** HTML resumes, JSON metadata
+
+### 5. Success Criteria
+
+- Successfully generates resumes with 85%+ job match score
+- Achieves 90%+ ATS compatibility score
+- Processes requests within 30 seconds
+- Handles API failures gracefully
+- Supports multiple AI providers seamlessly
+
+---
+
+## Task Breakdown
+
+### Phase 1: Project Setup & Infrastructure
+
+#### Task 1.1: Environment Setup
+- Create `04-resume-generation.py` file
+- Set up project structure and imports
+- Create configuration for AI provider settings
+- Set up logging infrastructure
+- **Estimate:** 2 hours
+
+#### Task 1.2: Database Integration
+- Implement database connection utilities
+- Create data retrieval methods for all required tables
+- Implement data validation for retrieved records
+- Create resume storage methods
+- **Estimate:** 3 hours
+
+### Phase 2: AI Provider Integration
+
+#### Task 2.1: OpenAI Integration
+- Implement OpenAI client initialization
+- Create `call_openai_api()` method with error handling
+- Implement retry logic with exponential backoff
+- Add token usage tracking
+- **Estimate:** 3 hours
+
+#### Task 2.2: Anthropic Integration
+- Implement Anthropic client initialization
+- Create `call_anthropic_api()` method with error handling
+- Implement retry logic
+- Add usage tracking
+- **Estimate:** 2 hours
+
+#### Task 2.3: Provider Abstraction Layer
+- Create unified AI provider interface
+- Implement provider selection logic
+- Add fallback mechanism between providers
+- Create response parsing utilities
+- **Estimate:** 4 hours
+
+### Phase 3: AI Prompt Implementation
+
+#### Task 3.1: Skills Extraction Prompt
+- Create skills extraction prompt template
+- Implement document content formatting
+- Create JSON response parser
+- Add validation for extracted data
+- **Estimate:** 3 hours
+
+#### Task 3.2: Job Matching Prompt
+- Create job matching prompt template
+- Implement scoring logic parser
+- Create gap analysis formatter
+- Add match recommendation parser
+- **Estimate:** 3 hours
+
+#### Task 3.3: Content Generation Prompt
+- Create content generation prompt template
+- Implement section-based generation
+- Add word count management
+- Create tone and style application
+- **Estimate:** 4 hours
+
+#### Task 3.4: ATS Optimization Prompt
+- Create ATS optimization prompt template
+- Implement keyword density checker
+- Create optimization suggestion parser
+- Add ATS score calculator
+- **Estimate:** 3 hours
+
+### Phase 4: Core Generation Logic
+
+#### Task 4.1: Data Gathering
+- Implement `gather_generation_data()` method
+- Create data organization structure
+- Add data validation and error handling
+- Implement missing data detection
+- **Estimate:** 3 hours
+
+#### Task 4.2: Resume Generation Orchestration
+- Create main generation workflow
+- Implement sequential AI call management
+- Add progress tracking
+- Create generation state management
+- **Estimate:** 4 hours
+
+#### Task 4.3: Template Integration
+- Implement `apply_template()` method
+- Create placeholder replacement logic
+- Add section mapping
+- Implement HTML sanitization
+- **Estimate:** 3 hours
+
+#### Task 4.4: Quality Scoring
+- Implement `calculate_scores()` method
+- Create score normalization logic
+- Add score explanation generation
+- Implement threshold validation
+- **Estimate:** 2 hours
+
+### Phase 5: Command-Line Interface
+
+#### Task 5.1: CLI Implementation
+- Create argument parser setup
+- Implement session ID validation
+- Add preview mode functionality
+- Create force regeneration logic
+- **Estimate:** 2 hours
+
+#### Task 5.2: Output Formatting
+- Implement JSON output formatter
+- Create human-readable output mode
+- Add debug output functionality
+- Implement progress indicators
+- **Estimate:** 2 hours
+
+### Phase 6: Error Handling & Recovery
+
+#### Task 6.1: API Error Handling
+- Implement rate limit detection and handling
+- Create API key validation
+- Add timeout management
+- Implement partial failure recovery
+- **Estimate:** 3 hours
+
+#### Task 6.2: Data Error Handling
+- Add missing data handlers
+- Create malformed response handlers
+- Implement template error recovery
+- Add database error handling
+- **Estimate:** 2 hours
+
+### Phase 7: Testing Implementation
+
+#### Task 7.1: Unit Test Setup
+- Create test file structure
+- Implement mock AI responses
+- Create test data fixtures
+- Set up test database
+- **Estimate:** 3 hours
+
+#### Task 7.2: Unit Tests - Data Layer
+- Test database retrieval methods
+- Test data validation logic
+- Test error scenarios
+- Test data organization
+- **Estimate:** 3 hours
+
+#### Task 7.3: Unit Tests - AI Integration
+- Test OpenAI integration
+- Test Anthropic integration
+- Test provider fallback logic
+- Test response parsing
+- **Estimate:** 4 hours
+
+#### Task 7.4: Unit Tests - Generation Logic
+- Test prompt template filling
+- Test score calculation
+- Test template application
+- Test output formatting
+- **Estimate:** 3 hours
+
+#### Task 7.5: Integration Tests
+- Test full generation workflow
+- Test with sample job descriptions
+- Test with various document types
+- Test error recovery scenarios
+- **Estimate:** 4 hours
+
+#### Task 7.6: Performance Tests
+- Test generation time limits
+- Test token usage optimization
+- Test concurrent generation handling
+- Test large document processing
+- **Estimate:** 2 hours
+
+#### Task 7.7: Manual Testing Scenarios
+- Test basic generation flow
+- Test preview mode
+- Test force regeneration
+- Test debug output
+- Test with real job postings
+- **Estimate:** 3 hours
+
+### Phase 8: Documentation & Deployment
+
+#### Task 8.1: Code Documentation
+- Add comprehensive docstrings
+- Create inline code comments
+- Document AI prompt rationale
+- Create configuration examples
+- **Estimate:** 2 hours
+
+#### Task 8.2: User Documentation
+- Create README for the module
+- Document CLI usage
+- Create troubleshooting guide
+- Add example workflows
+- **Estimate:** 2 hours
+
+#### Task 8.3: Deployment Preparation
+- Create deployment checklist
+- Verify environment variables
+- Test production configuration
+- Create monitoring setup
+- **Estimate:** 2 hours
+
+### Summary
+
+**Total Tasks:** 45  
+**Total Estimated Time:** 115 hours (~14.5 days at 8 hours/day)
+
+### Priority Order
+
+1. **Critical Path (Must Complete First):**
+   - Tasks 1.1, 1.2 (Setup)
+   - Tasks 2.1, 2.3 (Basic AI Integration)
+   - Tasks 4.1, 4.2 (Core Generation)
+
+2. **High Priority:**
+   - Tasks 3.1-3.4 (AI Prompts)
+   - Tasks 7.1, 7.5 (Basic Testing)
+
+3. **Medium Priority:**
+   - Tasks 4.3, 4.4 (Enhancement Features)
+   - Tasks 6.1, 6.2 (Error Handling)
+   - Tasks 7.2-7.4 (Comprehensive Testing)
+
+4. **Lower Priority:**
+   - Task 2.2 (Additional AI Provider)
+   - Tasks 7.6, 7.7 (Performance Testing)
+   - Tasks 8.1-8.3 (Documentation) 

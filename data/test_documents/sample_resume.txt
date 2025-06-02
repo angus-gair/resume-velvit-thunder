@@ -1,0 +1,15 @@
+
+John Doe
+Software Engineer
+
+WORK EXPERIENCE
+Senior Software Engineer at Tech Corp (2020-Present)
+- Developed scalable web applications
+- Led team of 5 developers
+
+EDUCATION
+BS Computer Science, University XYZ (2016)
+
+SKILLS
+Python, JavaScript, SQL, Docker
+        

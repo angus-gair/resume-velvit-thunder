@@ -1,2 +1,6 @@
 anthropic>=0.18.0
-python-dotenv>=1.0.0 
+python-dotenv>=1.0.0
+colorama==0.4.6
+tqdm==4.67.1
+PyPDF2==3.0.1
+python-docx==1.1.0 
