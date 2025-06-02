@@ -1,0 +1,164 @@
+  {
+    "projects": [
+      {
+        "client": "Sydney Trains",
+        "project_name": "PCM - Productivity Costing Model",
+        "description": "By analysing the operational changes and decisions made by respective teams in each layer, an end-to-end understanding of the cost accruals can be developed, providing granular insights that are not necessarily available in existing processes and reports (e.g. Payroll function). The key value add is a holistic and detailed view of individual cost components and when they are incurred, thereby allowing for a greater transparency in business decisions around timetables and how to service them.",
+        "scope": {
+          "staff": "1400 drivers and Guards",
+          "data_points": [
+            "Wage payments",
+            "penalties",
+            "entitlements per Enterprise agreement"
+          ]
+        },
+        "deliverables": "An end-to-end reporting tool that is able to cost the different layers of scheduling and rostering for Sydney Trains Train Crewing",
+        "data_model": {
+          "master": "6-12 month View",
+          "dwtt": "6 week view",
+          "period": "2 week",
+          "daily": "1 day",
+          "actual": "Costed by Payroll"
+        },
+        "considerations": [
+          "Wage",
+          "Absences",
+          "Allowances",
+          "Mileage",
+          "Penalties",
+          "Public Holidays",
+          "Minimum Shift Length"
+        ],
+        "impact": "In FY21 (Jun-Dec) about $15m or 7% of total driver / guard labour costs (~ $29m annualised) were related to excess shifts and extended hours",
+        "objectives": [
+          "Enable better financial management of train crew labour costs",
+          "Create enhanced visibility, transparency and additional financial performance measures"
+        ],
+        "challenges": [
+          "Enterprise Agreement - over 130 pages of conditions, resulted in over 80 pay rules to be coded (logic)",
+          "Pay Rules - the interaction between various Entitlements (shift swaps, OTB - Excess Shift, WOBOD)",
+          "Multiple shifts",
+          "Discrepancies Between Front End and Backend data",
+          "Unoffical Swaps Manual Changes not captured by system"
+        ],
+        "accomplishments": [
+          "Pay Breakdown From one metric in payroll (working hours) enhance view (7 categories of working time)",
+          "Pay Categorisation Productive Vs Unproductive Costs",
+          "Reporting Views Payroll - Aligns with Finance. Imperative for teting Cost Model - Aligns with Enterprise agreement",
+          "Documentation Formal Documentation of previously ad-hoc, key person risk"
+        ],
+        "collaborations": [
+          "Payroll (SME)",
+          "Train Crew Systems (BAU Owner)",
+          "Master Schedule and Roster (SME)",
+          "Workforce Modelling (SME)",
+          "SPI data & Analytics (data)"
+        ],
+        "data_quality": {
+          "rounding_assumptions": "Needs to align with payrole to two decimal places",
+          "reconciliation": {
+            "wage_calculations": "Reconcilled New Wage calculations against actual Pay Roll data from Finance",
+            "payslip_items": "Reconcilation accured for each specific line item in a payslip",
+            "data_layers": "For each data layer (SWTT, DWTT, Period and Actual) the were a dozen or so manually calculated payslips",
+            "pay_runs": "Compared the 2 fortnights Pay runs against PCM",
+            "total_reconciled": "$70M in wages that were reconcilied"
+          }
+        }
+      },
+      {
+        "client": "Equifax - Dominos",
+        "project_name": "Domino's New Store Model",
+        "description": "The largest project that i have on is New Site Recommendations for Dominoes Pizza. In order to accomplish this I was required to build a data set that comprised of Household Demographics, Commercial Demographics and Business Sales Data. I then created new variables, such as; Average distance of delivery, Cost of Goods and Break Even distance. Using this dataset i then built a two Model s that forecasted Sales for Pickup and Sales of Delivery.",
+        "objective": "Provide a Report that identified the top 100 best new site locations.",
+        "outcome": "The client (Dominos Australia) validated the results by tracking actual new store sales and compared these to the forecasted sales provided by our team. From memory, approximatley 70-80% of new store sales were within the forecasted range (with some over performing and some under performing) against predicted.",
+        "challenges": [
+          "Dominos France - Equifax didn't have a presence in France, which meant that we had no data assests. It was my role source appropriate data, such as: Household Demographics, Geographical Information, Commercial Demographics and Business Sales Data.",
+          "Stability of Forecasts - The models were on a quartlery update schedule. Which meant that the models were rebuilt every 3 months. To ensure confidence in the predictions, the model results needed to be stable between each version"
+        ],
+        "accomplishments": [
+          "Developed the 'Delivery Distances Dashboard'",
+          "Provided detailed view of store's operational performance",
+          "Enabled territory visualization and heat map of deliveries",
+          "Provided store benchmarking capabilities"
+        ],
+        "leadership": "As the Lead Data Scientist on the project it was my role to lead the discussions at the fortnighlty Project Update meeetings, and guiding the team through complex analysis"
+      },
+      {
+        "client": "Woolworths",
+        "project_name": "Post Implemenation Review",
+        "description": "Background: Woolworths are implementing a National Roll out of an Automated rostering system. Department managers, on average, spend 8 hours per week doing rosters. And there are 11 departments per site, equating to 88 hours per store per week. There are just over 1000 woolworths stores nationally",
+        "duties": [
+          "Liase with key stakeholders to understand business requirements",
+          "defining business rules and logic to be applied to the data",
+          "collect data from various systems",
+          "building a data model and managing on going refreshes to the data in an automated fashion",
+          "Building and Maintaining Dashboard reports"
+        ],
+        "dashboard_purpose": "To see how effective the auto scheduler was performing, in terms of matching the hours to be worked (published roster) against the forecast labour demand",
+        "granularity": {
+          "store_manager": "break down by; department, day, hour in order to see where manual intervention was required to correct discrepancies",
+          "group_managers": "responsible for a group of sites so needed an breakdown by store",
+          "program_stakeholders": "included Executive level stakeholders that needed to see a overall view of the progress of the rollout"
+        },
+        "outcome": "This dashboard became the source of truth for the Program performance and was consumed by all key decision makers within the project team.",
+        "challenges": [
+          "Agreeing On KPI (OKR's) and their definitions",
+          "Determining the best way to visualise the data",
+          "What need to be in the Dashboard"
+        ],
+        "data_sources": [
+          "Kronos Data",
+          "Employee Data",
+          "Sales Data",
+          "Forecast Sales"
+        ]
+      },
+      {
+        "client": "Sydney Trains",
+        "project_name": "Passenger Weight Predictions",
+        "description": "Predict Passenger Numbers based on Waratah Weights.",
+        "context": "As part of the Protected Industrial Action during 2022, the NSWGovernment implemented fare free travel to prevent the Rail Tram andBus Union's planned industrial action across the rail network.",
+        "implementation": "Travel was free on the Opal train network from 12.01am Monday 21November 2022 to 11.59pm Friday 25 November 2022.",
+        "accomplishments": "Documentation Built a Git Repository"
+      },
+      {
+        "client": "Equifax - ACTU",
+        "project_name": "ACTU (on behalf of the Australian Labor Party)",
+        "description": "13 models for ACTU (on behalf of the Australian Labor Party) These models identified voter intention (ALP, LNP, OneNation, etc) as well as the most influential issue facing the individual (Climate Changed, Economic Management, Immigration, etc).",
+        "usage": "The models were used for targeted campaigning via Direct Mail, Telephone and Door knocking.",
+        "performance": "In terms of model performance, the Greens Model had the largest Uplift of 3.9X, which was verified by live telephone poll conducted by ReachTel"
+      },
+      {
+        "client": "Prospa",
+        "project_name": "Prospa",
+        "description": "Prospa is an Australian FinTech company that is an online lending service provider for small businesses within the region.",
+        "analysis_areas": [
+          "USING SALESFORCE",
+          "Amoratization of One off fees",
+          "Are Defaults increasing?"
+        ]
+      },
+      {
+        "client": "SocietyOne",
+        "project_name": "SocietyOne",
+        "description": "SocietyOne operates as a peer-to-peer online lending platform designed to connect lenders with borrowers directly, bypassing traditional financial institutions like banks.",
+        "role": "I worked as a Business Analyst within the Sales and Marketing Team",
+        "analysis_areas": [
+          "Campaign Reporting",
+          "Sales Funnel Analysis",
+          "Metrics",
+          "Dimensions"
+        ],
+        "marketing_channels": [
+          "Display / Retargeting",
+          "Direct Mail",
+          "eDM",
+          "eDM - Paid",
+          "Paid Serach",
+          "Partners / Affiliates",
+          "Organic / Website",
+          "Digital"
+        ]
+      }
+    ]
+  } 
