@@ -1,0 +1,5 @@
+{
+    "api_key": "your-anthropic-api-key-here",
+    "output_dir": "./applications",
+    "model": "claude-3-5-sonnet-20241022"
+} 
