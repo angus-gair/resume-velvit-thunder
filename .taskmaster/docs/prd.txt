@@ -288,4 +288,81 @@ The Resume Generation System is Step 4 of a 6-step workflow that creates tailore
 4. **Lower Priority:**
    - Task 2.2 (Additional AI Provider)
    - Tasks 7.6, 7.7 (Performance Testing)
-   - Tasks 8.1-8.3 (Documentation) 
+   - Tasks 8.1-8.3 (Documentation)
+
+Resume Builder API Integration Project
+======================================
+
+Project Overview
+----------------
+This project aims to connect an existing, functional Next.js frontend (v0-resume-creation-framework) with an existing Python backend for AI-powered resume generation. Both systems are already built and working independently. The goal is to create a minimal API layer to enable web-based access to the resume generation functionality.
+
+Current State
+-------------
+- Frontend: 100% complete Next.js application with 6-step workflow
+- Backend: 73.9% complete Python scripts with AI integration (Anthropic Claude)
+- Database: SQLite with existing schema and data
+- MCP Servers: Already configured for enhanced AI capabilities
+
+Objectives
+----------
+1. Create a FastAPI wrapper to expose Python functionality via REST API
+2. Add API client to frontend to communicate with backend
+3. Implement WebSocket for real-time progress updates
+4. Create development admin panel for monitoring and testing
+5. Maintain 100% of existing functionality without refactoring
+
+Technical Requirements
+----------------------
+1. API Layer (FastAPI)
+   - 4 core endpoints for resume generation workflow
+   - 3 admin endpoints for development tools
+   - WebSocket endpoint for progress updates
+   - CORS configuration for frontend access
+   - Subprocess calls to preserve existing script functionality
+
+2. Frontend Integration
+   - API client library in TypeScript
+   - Minimal updates to existing components (API calls only)
+   - Admin page with environment, status, and testing tabs
+   - Subtle admin link on home page (dev mode only)
+
+3. Security & Configuration
+   - Admin endpoints disabled in production (NODE_ENV check)
+   - Sensitive environment variables filtered in admin view
+   - Existing authentication preserved
+   - No changes to database schema
+
+4. Development Tools
+   - Environment variable viewer with sensitive data protection
+   - System status dashboard (database stats, MCP servers, API endpoints)
+   - Testing utilities for database and AI provider connections
+   - One-click refresh for all admin data
+
+Constraints
+-----------
+- NO refactoring of existing code
+- NO database schema changes
+- NO UI/UX modifications (except admin page)
+- Minimal new code (~535 lines total)
+- Complete in 1 week (40 hours)
+
+Success Criteria
+----------------
+- All existing functionality accessible via web UI
+- File uploads working through browser
+- Real-time progress updates during generation
+- Admin panel functional in development mode
+- Same resume quality as command-line version (92% match score)
+
+Implementation Approach
+-----------------------
+Use subprocess to call existing Python scripts from API endpoints, preserving all current functionality while adding web access. This minimizes risk and development time while maximizing code reuse (96.5%).
+
+Deliverables
+------------
+1. Working API at http://localhost:8000
+2. Updated frontend calling backend API
+3. Functional admin panel at http://localhost:3000/admin
+4. Documentation for running the integrated application
+5. Simple start script for local development 
