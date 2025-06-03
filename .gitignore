@@ -2,6 +2,9 @@
 .env
 config.json
 
+# MCP Configuration with API keys
+.cursor/mcp.json
+
 # MCP Data
 mcp-data/*
 !mcp-data/.gitkeep
