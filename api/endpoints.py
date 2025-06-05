@@ -28,7 +28,7 @@ except ImportError as e:
 
 # Import WebSocket progress functions
 try:
-    from .main import send_progress_update, send_completion_update
+    from main import send_progress_update, send_completion_update
 except ImportError:
     # Fallback functions if WebSocket is not available
     async def send_progress_update(session_id: str, operation: str, progress: int, message: str = "", details: dict = None):
@@ -38,7 +38,7 @@ except ImportError:
         pass
 
 # Import our models
-from .models import (
+from models import (
     JobAnalysisRequest, JobAnalysisResponse,
     DocumentUploadRequest, DocumentUploadResponse,
     GenerationConfigRequest, GenerationConfigResponse,

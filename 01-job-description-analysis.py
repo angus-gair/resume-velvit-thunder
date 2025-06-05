@@ -41,33 +41,91 @@ def setup_logging(verbose: bool = False):
 
 
 class JobAnalyzer:
-    """Handles job posting analysis using Claude API."""
+    """
+    A class to analyze job postings using the Claude AI API.
     
-    def __init__(self, api_key: str, model: str = "claude-3-5-sonnet-20241022"):
+    This class provides methods to send job postings to the Claude AI API and extract
+    structured information such as required skills, experience, and qualifications.
+    
+    Example:
+        >>> from pathlib import Path
+        >>> analyzer = JobAnalyzer(api_key="your-api-key")
+        >>> with open("job_posting.txt") as f:
+        ...     job_content = f.read()
+        >>> analysis = analyzer.analyze_job_posting(job_content)
+        >>> print(analysis)  # Prints the analyzed job posting
+    
+    Attributes:
+        client (anthropic.Anthropic): The Anthropic API client
+        model (str): The Claude model to use for analysis
+        logger (logging.Logger): Logger instance for the class
+    """
+    
+    def __init__(self, api_key: str, model: str = "claude-3-5-sonnet-20241022") -> None:
         """
-        Initialize the analyzer with API credentials.
+        Initialize the JobAnalyzer with API credentials and model selection.
         
         Args:
-            api_key: Anthropic API key
-            model: Claude model to use
+            api_key: Anthropic API key for authentication. Can be obtained from
+                    https://console.anthropic.com/settings/keys
+            model: Name of the Claude model to use for analysis. Defaults to
+                  "claude-3-5-sonnet-20241022". Other options include:
+                  - "claude-3-opus-20240229" (most capable)
+                  - "claude-3-sonnet-20240229" (balanced)
+                  - "claude-3-haiku-20240307" (fastest)
+        
+        Raises:
+            anthropic.AuthenticationError: If the API key is invalid
+            ValueError: If the API key is empty or None
         """
+        if not api_key:
+            raise ValueError("API key cannot be empty")
+            
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model
         self.logger = logging.getLogger(__name__)
+        self.logger.debug(f"Initialized JobAnalyzer with model: {model}")
     
     def analyze_job_posting(self, job_content: str) -> str:
         """
-        Analyze a job posting and extract key information.
+        Analyze a job posting and extract structured information using Claude AI.
+        
+        This method sends the job posting to the Claude API and returns the analyzed
+        content including a cleaned version of the posting and extracted requirements.
         
         Args:
-            job_content: The raw job posting text
-            
+            job_content: The raw job posting text to analyze. Should be a string
+                       containing the complete job description and requirements.
+        
         Returns:
-            Analyzed content with cleaned posting and extracted requirements
-            
+            str: A string containing the analysis results in the following format:
+                <cleaned_job_posting>
+                [Formatted job posting in Markdown]
+                </cleaned_job_posting>
+                
+                <skills_and_experience>
+                [Extracted skills, experience, and requirements in Markdown]
+                </skills_and_experience>
+        
         Raises:
-            Exception: If API call fails
+            anthropic.APIError: If there's an error with the Claude API request
+            ValueError: If the job_content is empty or too long (>100,000 characters)
+            Exception: For any other unexpected errors during processing
+            
+        Example:
+            >>> analyzer = JobAnalyzer(api_key="your-api-key")
+            >>> with open("job_posting.txt") as f:
+            ...     job_text = f.read()
+            >>> result = analyzer.analyze_job_posting(job_text)
+            >>> print(result)  # Prints the analyzed content
         """
+        if not job_content or not job_content.strip():
+            raise ValueError("Job content cannot be empty")
+            
+        if len(job_content) > 100000:  # Prevent sending excessively large content
+            raise ValueError("Job content exceeds maximum allowed length (100,000 characters)")
+            
+        self.logger.debug(f"Analyzing job posting ({len(job_content)} characters)")
         prompt = self._create_prompt(job_content)
         
         try:
@@ -75,23 +133,44 @@ class JobAnalyzer:
             message = self.client.messages.create(
                 model=self.model,
                 max_tokens=4000,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ]
+                temperature=0.3,  # Lower temperature for more deterministic output
+                messages=[{"role": "user", "content": prompt}]
             )
+            
+            if not message.content or not message.content[0].text:
+                raise ValueError("Empty response received from Claude API")
+                
+            self.logger.debug("Successfully received analysis from Claude API")
             return message.content[0].text
+            
         except anthropic.APIError as e:
-            self.logger.error(f"API error: {e}")
+            self.logger.error(f"Claude API error: {e}")
             raise
         except Exception as e:
-            self.logger.error(f"Unexpected error during API call: {e}")
+            self.logger.error(f"Unexpected error during job analysis: {e}")
             raise
     
     def _create_prompt(self, job_content: str) -> str:
-        """Create the analysis prompt."""
+        """
+        Create a detailed prompt for Claude to analyze a job posting.
+        
+        This internal method constructs the system and user prompts that guide Claude
+        in analyzing the job posting. The prompt is designed to extract structured
+        information while maintaining the original content's meaning.
+        
+        Args:
+            job_content: The raw job posting text to be analyzed
+            
+        Returns:
+            str: A formatted prompt string for the Claude API
+            
+        Note:
+            The prompt is specifically crafted to work with Claude's capabilities
+            and follows best practices for instruction-following models.
+        """
+        # Escape any XML/HTML-like tags in the job content to prevent prompt injection
+        job_content = job_content.replace("<", "&lt;").replace(">", "&gt;")
+        
         return f"""
 You are an AI assistant tasked with analyzing a job posting and extracting key information. Your goal is to provide a clean version of the job posting and a list of required skills and experience. Here's the job posting:
 

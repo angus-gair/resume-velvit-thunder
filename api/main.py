@@ -28,8 +28,8 @@ except ImportError as e:
 
 # Import our endpoints
 try:
-    from .endpoints import router as core_router
-    from .admin_endpoints import router as admin_router
+    from endpoints import router as core_router
+    from admin_endpoints import router as admin_router
 except ImportError as e:
     print(f"Warning: Could not import endpoint modules: {e}")
     core_router = None
