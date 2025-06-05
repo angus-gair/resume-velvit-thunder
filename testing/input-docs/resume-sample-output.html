@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angus Gair Resume - Data Analyst</title>
+  <style>
+    /* Base Styles */
+    :root {
+      --accent-color: #2079c7;
+      --font-family: 'Open Sans', Arial, sans-serif;
+      --font-size-body: 9pt;
+      --font-size-heading: 11pt;
+      --font-size-name: 36pt;
+      --font-weight-normal: 300;
+      --font-weight-bold: 600;
+      --line-height: 1.4;
+      --padding: 0.65in;
+      --spacing-small: 4pt;
+      --spacing-medium: 8pt;
+      --spacing-large: 24pt;
+      --bullet-char: '•';
+      --color-text: #000;
+    }
+
+    @font-face {
+      font-weight: 300;
+      font-family: "Open Sans";
+      font-style: normal;
+      src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+    }
+
+    @font-face {
+      font-weight: 600;
+      font-family: "Open Sans";
+      font-style: normal;
+      src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      word-break: break-word;
+    }
+
+    body {
+      color: var(--color-text);
+      font-weight: var(--font-weight-normal);
+      font-size: var(--font-size-body);
+      font-family: var(--font-family);
+      line-height: var(--line-height);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    a, a:hover, a:visited, a:focus {
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .page {
+      padding: var(--padding);
+      width: 8.5in;
+      min-height: 11in;
+      background-color: white;
+      position: relative;
+      page-break-after: always;
+    }
+    
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    /* Header Styles */
+    .header {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-large);
+    }
+
+    .header-primary {
+      flex: 0 0 65%;
+    }
+
+    .header-secondary {
+      flex: 0 0 30%;
+      text-align: right;
+    }
+
+    .full-name {
+      color: var(--accent-color);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-name);
+      line-height: 1;
+      margin-bottom: var(--spacing-small);
+    }
+
+    .title {
+      font-weight: var(--font-weight-bold);
+      font-size: calc(var(--font-size-heading) + 1pt);
+      margin-bottom: var(--spacing-medium);
+    }
+
+    .contact-details > div {
+      margin-bottom: var(--spacing-small);
+    }
+
+    /* Content Styles */
+    .content {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 10%;
+    }
+
+    .col-main {
+      flex: 0 0 60%;
+    }
+
+    .col-aside {
+      flex: 0 0 30%;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: var(--spacing-large);
+    }
+
+    .section-title {
+      text-transform: uppercase;
+      color: var(--accent-color);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-heading);
+      border-bottom: 1px solid var(--accent-color);
+      margin-bottom: var(--spacing-medium);
+      padding-bottom: 2pt;
+    }
+
+    /* Block Styles */
+    .block {
+      margin-bottom: var(--spacing-medium);
+    }
+
+    .block-heading {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-small);
+    }
+
+    .heading-primary {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-heading);
+    }
+
+    .heading-secondary {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-body);
+    }
+
+    .heading-minor {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-body);
+    }
+
+    .block-content {
+      margin-bottom: var(--spacing-small);
+    }
+
+    /* List Styles */
+    ul {
+      list-style: none;
+      margin-left: 12pt;
+    }
+
+    li {
+      position: relative;
+      margin-bottom: var(--spacing-small);
+      padding-left: 12pt;
+    }
+
+    li:before {
+      content: var(--bullet-char);
+      position: absolute;
+      left: 0;
+      font-weight: var(--font-weight-bold);
+    }
+
+    /* Skills List */
+    .skills-list {
+      column-count: 1;
+    }
+
+    .skill-category {
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--spacing-small);
+      margin-top: var(--spacing-medium);
+    }
+
+    /* Page Numbering */
+    .page-number {
+      position: absolute;
+      bottom: 0.3in;
+      right: var(--padding);
+      font-size: 8pt;
+    }
+
+    /* Responsive Print */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      
+      .page {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        padding: 0.5in;
+      }
+      
+      @page {
+        size: letter;
+        margin: 0;
+      }
+    }
+
+    /* This media query ensures the page displays well on screens */
+    @media screen {
+      body {
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+      }
+      
+      .page {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- PAGE 1 -->
+  <div class="page">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="header-primary">
+        <div class="full-name">ANGUS GAIR</div>
+        <div class="title">Data Analyst & Business Intelligence Specialist</div>
+      </div>
+      <div class="header-secondary">
+        <div class="contact-details">
+          <div>Sydney, NSW</div>
+          <div>0468333745</div>
+          <div>angus@gair.com.au</div>
+          <div><a href="https://www.linkedin.com/in/angus-gair" target="_blank" rel="noopener">linkedin.com/in/angus-gair</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Main Column -->
+      <div class="col-main">
+        <!-- Professional Summary -->
+        <div class="section">
+          <div class="section-title">Professional Summary</div>
+          <div class="block">
+            <div class="block-content">
+              <p>Experienced Data Analyst with extensive background in data migration, SQL, and business intelligence across multiple industries including finance, government, and retail. Proven track record of transforming complex datasets into actionable insights through robust data pipelines, ETL processes, and visualization. Strong communication skills with ability to translate technical concepts to non-technical stakeholders. Experienced in working with large datasets (100M+ records) and implementing data quality frameworks. Skilled in data warehousing, ETL processes, and visualization tools including Tableau and Power BI. Particularly focused on optimizing data migration processes and ensuring data quality during system transitions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="section">
+          <div class="section-title">Work Experience</div>
+          
+          <!-- Job 1: AJ Insights -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">AJ Insights</div>
+              <div class="heading-minor">December 2024 - Current</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Founder and Developer</div>
+            </div>
+            <ul>
+              <li>Developed integrated data pipelines connecting diverse data sources with PostgreSQL and MySQL backends</li>
+              <li>Created advanced ETL processes for automated data extraction, transformation, and loading</li>
+              <li>Built data migration frameworks for seamless transition between different data storage systems</li>
+              <li>Designed comprehensive data quality validation frameworks with automated testing</li>
+              <li>Integrated geo-spatial data from G-NAF with demographic information at granular Meshblock level</li>
+            </ul>
+          </div>
+          
+          <!-- Job 2: WooliesX -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">WooliesX</div>
+              <div class="heading-minor">April 2024 - December 2024</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Senior Performance & Optimisation Analyst</div>
+            </div>
+            <ul>
+              <li>Developed end-to-end ETL data pipelines for Media Mix Model project, demonstrating expertise in data migration and integration</li>
+              <li>Created data quality frameworks ensuring accurate data analysis and reporting</li>
+              <li>Engineered enterprise-scale forecast system with 97.8% accuracy using multi-dimensional data models and SQL pipelines</li>
+              <li>Processed and analyzed 170M+ transactions for loyalty program analytics, creating interactive dashboards</li>
+              <li>Built analytics framework linking customer behavior to financial outcomes for executive decision-making</li>
+              <li>Implemented data enrichment processes for enhanced customer segmentation across multiple systems</li>
+            </ul>
+          </div>
+          
+          <!-- Job 3: Sydney Trains -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Sydney Trains</div>
+              <div class="heading-minor">June 2021 - December 2023</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Senior Data Analyst</div>
+            </div>
+            <ul>
+              <li>Developed enterprise KPI dashboards providing a single source of truth, reconciling $70M payroll data</li>
+              <li>Implemented rigorous data quality checks, ensuring data accuracy and consistency across systems</li>
+              <li>Wrote complex SQL queries and optimized procedures for data validation and reporting</li>
+              <li>Created comprehensive SQL codebase and data models to enhance Workforce Planning</li>
+              <li>Successfully mapped and validated data from legacy systems to new platforms, supporting business transformation</li>
+              <li>Built predictive models for passenger analysis, extracting valuable insights from complex datasets</li>
+              <li>Pioneered adoption of analytical tools through complex SQL queries and visualization techniques</li>
+            </ul>
+          </div>
+          
+          <!-- Job 4: Woolworths Group -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Woolworths Group</div>
+              <div class="heading-minor">June 2020 - June 2021</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Senior Tableau Developer</div>
+            </div>
+            <ul>
+              <li>Re‑built the Planning & Performance dashboard in Power BI, serving 300+ users daily across 1,000+ stores</li>
+              <li>Maintained data integrity during automated rostering system rollout, ensuring data quality for decision-making</li>
+              <li>Translated end-user requirements into data schema designs for Data Developers</li>
+              <li>Integrated historical data with major events calendar for year-over-year performance analysis</li>
+              <li>Supported dashboard users across multiple organizational levels with data interpretation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Column -->
+      <div class="col-aside">
+        <!-- Skills Section -->
+        <div class="section">
+          <div class="section-title">Skills</div>
+          
+          <div class="skill-category">DATA ANALYSIS & MIGRATION</div>
+          <ul class="skills-list">
+            <li>Advanced SQL</li>
+            <li>Data Quality Management</li>
+            <li>Data Mapping & Migration</li>
+            <li>Legacy System Integration</li>
+            <li>ETL Processes</li>
+            <li>Data Reconciliation</li>
+            <li>Data Pipeline Development</li>
+          </ul>
+          
+          <div class="skill-category">TECHNICAL SKILLS</div>
+          <ul class="skills-list">
+            <li>SQL (Advanced)</li>
+            <li>Power BI & Tableau</li>
+            <li>Data Warehousing</li>
+            <li>Python</li>
+            <li>Git Version Control</li>
+            <li>PostgreSQL & MySQL</li>
+            <li>DAX & PowerQuery</li>
+          </ul>
+          
+          <div class="skill-category">BUSINESS SKILLS</div>
+          <ul class="skills-list">
+            <li>Stakeholder Engagement</li>
+            <li>Requirements Gathering</li>
+            <li>Process Documentation</li>
+            <li>Cross-functional Collaboration</li>
+            <li>Change Management Support</li>
+            <li>Business Process Analysis</li>
+            <li>Technical Communication</li>
+          </ul>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+          <div class="section-title">Education</div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Bachelor of Commerce</div>
+            </div>
+            <div class="heading-secondary">Macquarie University</div>
+            <div class="heading-minor">Economics & Marketing</div>
+          </div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Diploma of Business</div>
+            </div>
+            <div class="heading-secondary">North Sydney Institute of TAFE</div>
+            <div class="heading-minor">Marketing</div>
+          </div>
+        </div>
+        
+        <!-- Certifications Section -->
+        <div class="section">
+          <div class="section-title">Certifications</div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Predictive Modelling Using SAS InMemory Statistics</div>
+            </div>
+            <div class="heading-minor">SAS</div>
+          </div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Predictive Modelling Using SAS High-Performance Analytics</div>
+            </div>
+            <div class="heading-minor">SAS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-number">Page 1 of 2</div>
+  </div>
+  
+  <!-- PAGE 2 -->
+  <div class="page">
+    <!-- Main Content - Page 2 -->
+    <div class="content">
+      <!-- Main Column -->
+      <div class="col-main">
+        <!-- Work Experience (Continued) -->
+        <div class="section">
+          <div class="section-title">Work Experience (Continued)</div>
+          
+          <!-- Job 5: Prospa -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Prospa</div>
+              <div class="heading-minor">December 2019 - April 2020</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Business Intelligence Analyst</div>
+            </div>
+            <ul>
+              <li>Implemented data-driven strategies optimizing business performance, leading to 15% revenue increase</li>
+              <li>Conducted data migration and integration between legacy and new cloud-based systems</li>
+              <li>Utilized Snowflake, Databricks (Hive SQL and Python), and Azure Cloud Services</li>
+              <li>Developed analytical frameworks for amortization of fees and default rate monitoring</li>
+              <li>Created comprehensive documentation for data models and ETL processes</li>
+            </ul>
+          </div>
+          
+          <!-- Job 6: Mastercard -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Mastercard</div>
+              <div class="heading-minor">August 2019 - December 2019</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Analytics and Tableau Consultant</div>
+            </div>
+            <ul>
+              <li>Performed regression testing to ensure data consistency between different data models</li>
+              <li>Analyzed transaction-level data exceeding 100 million records for customer behavior insights</li>
+              <li>Developed data migration protocols for transitioning between analytics platforms</li>
+              <li>Performed post-campaign analysis to provide insights that increased incremental engagement</li>
+              <li>Transformed analytical output into actionable insights for internal stakeholders</li>
+            </ul>
+          </div>
+          
+          <!-- Job 7: Equifax -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Equifax</div>
+              <div class="heading-minor">September 2016 - August 2019</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Data Scientist (Client Analytics)</div>
+            </div>
+            <ul>
+              <li>Led data migration and integration projects, ensuring data quality and alignment with business objectives</li>
+              <li>Created predictive models with verified performance uplift of up to 3.9x through rigorous testing</li>
+              <li>Managed documentation and version control of SQL and analytical scripts via Git</li>
+              <li>Developed comprehensive customer profiling analyzing 1.4 million Bureau Credit enquiries</li>
+              <li>Successfully adapted analytical frameworks for international markets, demonstrating flexibility</li>
+              <li>Led team transition to agile methodology, increasing project completion rates</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="section">
+          <div class="section-title">Key Projects</div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">PCM - Productivity Costing Model (Sydney Trains)</div>
+            </div>
+            <ul>
+              <li>Developed comprehensive data model tracking wage payments across multiple time periods</li>
+              <li>Implemented 80+ coded pay rules from Enterprise Agreement into the data model</li>
+              <li>Reconciled $70M in wages against Payroll data with line-item verification to two-decimal precision</li>
+              <li>Built strong relationships with stakeholders to extract specialized knowledge crucial for data mapping</li>
+              <li>Created extensive documentation for the ETL process and data dictionary for enterprise use</li>
+            </ul>
+          </div>
+          
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Marketing Mix Modeling Pipeline (WooliesX)</div>
+            </div>
+            <ul>
+              <li>Engineered end-to-end data analytics platform integrating diverse data sources</li>
+              <li>Developed scalable ETL solution for enhanced customer segmentation</li>
+              <li>Created data quality validation framework ensuring consistent reporting</li>
+              <li>Processed and validated over 170M transactions for loyalty program analytics</li>
+              <li>Built interactive dashboards providing insights on customer loyalty and campaign ROI</li>
+            </ul>
+          </div>
+          
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Passenger Weight Predictions (Sydney Trains)</div>
+            </div>
+            <ul>
+              <li>Developed machine learning model to predict passenger numbers based on train weights</li>
+              <li>Created comprehensive Git repository documenting data ingestion and modeling steps</li>
+              <li>Uncovered an additional 4.5 million passengers during periods with non-operational card readers</li>
+              <li>Implemented rigorous validation methodology to ensure prediction accuracy</li>
+            </ul>
+          </div>
+          
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Domino's New Store Model (Equifax)</div>
+            </div>
+            <ul>
+              <li>Developed dataset combining household demographics, commercial data, and business sales</li>
+              <li>Created models forecasting pickup and delivery sales for new store locations</li>
+              <li>Successfully adapted the framework for international markets including New Zealand and Europe</li>
+              <li>Led project meetings and guided team through complex analyses and data mapping</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Column - Page 2 -->
+      <div class="col-aside">
+        <!-- Additional Skills Section -->
+        <div class="section">
+          <div class="section-title">Additional Skills</div>
+          
+          <div class="skill-category">DATA VISUALIZATION</div>
+          <ul class="skills-list">
+            <li>Interactive Dashboards</li>
+            <li>Executive Reporting</li>
+            <li>Data Storytelling</li>
+            <li>KPI Development</li>
+            <li>Multi-dimensional Analysis</li>
+          </ul>
+          
+          <div class="skill-category">DATA INTEGRATION</div>
+          <ul class="skills-list">
+            <li>SAP Data Integration</li>
+            <li>API Integration</li>
+            <li>Cloud Data Platforms</li>
+            <li>Data Lake Architecture</li>
+            <li>Schema Design</li>
+          </ul>
+          
+          <div class="skill-category">PREDICTIVE ANALYTICS</div>
+          <ul class="skills-list">
+            <li>Machine Learning Models</li>
+            <li>Propensity Modeling</li>
+            <li>Regression Analysis</li>
+            <li>Clustering Techniques</li>
+            <li>Gradient Boosted Machines</li>
+          </ul>
+        </div>
+
+        <!-- Industry Experience Section -->
+        <div class="section">
+          <div class="section-title">Industry Experience</div>
+          <ul class="skills-list">
+            <li>Retail & FMCG (Woolworths, Domino's)</li>
+            <li>Transportation (Sydney Trains)</li>
+            <li>Financial Services (Equifax, HSBC, AMEX)</li>
+            <li>FinTech (Prospa, SocietyOne)</li>
+            <li>Media & Marketing (MediaCom, OMD)</li>
+            <li>Data Analysis & Consulting</li>
+          </ul>
+        </div>
+        
+        <!-- Special Projects Section -->
+        <div class="section">
+          <div class="section-title">Geographic Data Expertise</div>
+          <div class="block-content">
+            <p>Specialized experience in geographic information systems integration with analytics platforms. Extensive work with G-NAF datasets from data.gov.au, combining address-level data with demographic information at Meshblock level (more granular than postcode).</p>
+          </div>
+          <ul>
+            <li>Geospatial data visualization</li>
+            <li>Territory modeling and optimization</li>
+            <li>Location-based customer segmentation</li>
+            <li>Proximity analysis for retail networks</li>
+          </ul>
+        </div>
+        
+        <!-- Professional Approach Section -->
+        <div class="section">
+          <div class="section-title">Professional Approach</div>
+          <div class="block-content">
+            <p>I approach data analysis and migration projects with meticulous attention to detail, ensuring data quality throughout the process. My methodology involves thorough stakeholder engagement, comprehensive documentation, rigorous testing, and clear communication of findings. I prioritize translating technical concepts for non-technical audiences to drive business value from data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-number">Page 2 of 2</div>
+  </div>
+</body>
+</html> 

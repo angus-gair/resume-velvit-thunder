@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Testing Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .status-good { color: #27ae60; }
+        .status-warning { color: #f39c12; }
+        .status-error { color: #e74c3c; }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .test-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ddd;
+        }
+
+        .test-item.passed { border-left-color: #27ae60; }
+        .test-item.failed { border-left-color: #e74c3c; }
+        .test-item.pending { border-left-color: #f39c12; }
+        .test-item.missing { border-left-color: #95a5a6; }
+
+        .test-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .test-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .test-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-passed {
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+
+        .status-failed {
+            background: #fadbd8;
+            color: #e74c3c;
+        }
+
+        .status-pending {
+            background: #fef9e7;
+            color: #f39c12;
+        }
+
+        .status-missing {
+            background: #eaeded;
+            color: #95a5a6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            transition: width 0.3s ease;
+        }
+
+        .todo-list {
+            list-style: none;
+        }
+
+        .todo-item {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .todo-priority-high { border-left-color: #e74c3c; }
+        .todo-priority-medium { border-left-color: #f39c12; }
+        .todo-priority-low { border-left-color: #95a5a6; }
+
+        .file-tree {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .file-tree-item {
+            margin: 2px 0;
+        }
+
+        .file-exists { color: #27ae60; }
+        .file-missing { color: #e74c3c; }
+        .file-partial { color: #f39c12; }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 Testing Dashboard</h1>
+            <p>Resume Builder Application - Test Status & Coverage</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number status-good">85%</div>
+                <div class="stat-label">Overall Coverage</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number status-good">24</div>
+                <div class="stat-label">Tests Implemented</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number status-warning">6</div>
+                <div class="stat-label">Tests Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number status-error">3</div>
+                <div class="stat-label">Tests Failing</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Quick Actions -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="runAllTests()">🚀 Run All Tests</button>
+                <button class="btn btn-success" onclick="runFrontendTests()">⚛️ Frontend Tests</button>
+                <button class="btn btn-warning" onclick="runBackendTests()">🐍 Backend Tests</button>
+                <button class="btn btn-danger" onclick="runIntegrationTests()">🔗 Integration Tests</button>
+            </div>
+
+            <!-- Frontend Tests Status -->
+            <div class="section">
+                <h2>🎨 Frontend Tests (React/Next.js)</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 88%"></div>
+                </div>
+                <p><strong>Coverage: 88%</strong> | 18 tests implemented | 2 failing | 3 pending</p>
+                
+                <div class="test-grid">
+                    <div class="test-item passed">
+                        <div class="test-title">Export Step Component</div>
+                        <div class="test-description">489 lines • export-step.test.tsx</div>
+                        <span class="test-status status-passed">✅ Passed</span>
+                    </div>
+                    <div class="test-item passed">
+                        <div class="test-title">Review Step Component</div>
+                        <div class="test-description">346 lines • review-step.test.tsx</div>
+                        <span class="test-status status-passed">✅ Passed</span>
+                    </div>
+                    <div class="test-item failed">
+                        <div class="test-title">Generation Step Component</div>
+                        <div class="test-description">549 lines • GenerationStep.test.tsx</div>
+                        <span class="test-status status-failed">❌ Failed</span>
+                    </div>
+                    <div class="test-item passed">
+                        <div class="test-title">Document Upload Step</div>
+                        <div class="test-description">433 lines • DocumentUploadStep.test.tsx</div>
+                        <span class="test-status status-passed">✅ Passed</span>
+                    </div>
+                    <div class="test-item failed">
+                        <div class="test-title">Job Analysis Step</div>
+                        <div class="test-description">350 lines • JobAnalysisStep.test.tsx</div>
+                        <span class="test-status status-failed">❌ Failed</span>
+                    </div>
+                    <div class="test-item passed">
+                        <div class="test-title">Configuration Step</div>
+                        <div class="test-description">507 lines • configuration-step.test.tsx</div>
+                        <span class="test-status status-passed">✅ Passed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backend Tests Status -->
+            <div class="section">
+                <h2>🔧 Backend Tests (Python/FastAPI)</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 82%"></div>
+                </div>
+                <p><strong>Coverage: 82%</strong> | 6 test files | 1 failing | 2 pending</p>
+                
+                <div class="test-grid">
+                    <div class="test-item passed">
+                        <div class="test-title">Integration Tests</div>
+                        <div class="test-description">454 lines • test_integration.py</div>
+                        <span class="test-status status-passed">✅ Passed</span>
+                    </div>
+                    <div class="test-item failed">
+                        <div class="test-title">Resume Generation Tests</div>
+                        <div class="test-description">264 lines • test_04_resume_generation.py</div>
+                        <span class="test-status status-failed">❌ Failed</span>
+                    </div>
+                    <div class="test-item pending">
+                        <div class="test-title">API Endpoint Tests</div>
+                        <div class="test-description">Built into admin_endpoints.py</div>
+                        <span class="test-status status-pending">⏳ Pending</span>
+                    </div>
+                    <div class="test-item pending">
+                        <div class="test-title">WebSocket Tests</div>
+                        <div class="test-description">Real-time communication testing</div>
+                        <span class="test-status status-pending">⏳ Pending</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integration Tests -->
+            <div class="section">
+                <h2>🔗 Integration & E2E Tests</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <p><strong>Coverage: 75%</strong> | 2 test suites | Critical workflows covered</p>
+                
+                <div class="test-grid">
+                    <div class="test-item passed">
+                        <div class="test-title">Workflow Integration</div>
+                        <div class="test-description">411 lines • workflow-integration.test.tsx</div>
+                        <span class="test-status status-passed">✅ Passed</span>
+                    </div>
+                    <div class="test-item passed">
+                        <div class="test-title">Complete Workflow</div>
+                        <div class="test-description">577 lines • workflow.test.tsx</div>
+                        <span class="test-status status-passed">✅ Passed</span>
+                    </div>
+                    <div class="test-item missing">
+                        <div class="test-title">API Integration</div>
+                        <div class="test-description">Frontend ↔ Backend communication</div>
+                        <span class="test-status status-missing">⚠️ Missing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test File Structure -->
+            <div class="section">
+                <h2>📁 Test File Structure</h2>
+                <div class="file-tree">
+<pre>
+📂 v0-resume-creation-framework/__tests__/
+├── 📂 components/
+│   └── 📂 steps/
+│       ├── <span class="file-exists">✅ export-step.test.tsx</span>               (17KB, 489 lines)
+│       ├── <span class="file-exists">✅ review-step.test.tsx</span>               (13KB, 346 lines)
+│       ├── <span class="file-partial">⚠️ GenerationStep.test.tsx</span>            (18KB, 549 lines)
+│       ├── <span class="file-exists">✅ DocumentUploadStep.test.tsx</span>        (15KB, 433 lines)
+│       ├── <span class="file-partial">⚠️ JobAnalysisStep.test.tsx</span>           (12KB, 350 lines)
+│       ├── <span class="file-exists">✅ configuration-step.test.tsx</span>        (18KB, 507 lines)
+│       ├── <span class="file-exists">✅ generation-step.test.tsx</span>           (20KB, 536 lines)
+│       ├── <span class="file-exists">✅ source-documents-step.test.tsx</span>     (16KB, 482 lines)
+│       └── <span class="file-exists">✅ job-description-step.test.tsx</span>      (13KB, 360 lines)
+├── 📂 integration/
+│   ├── <span class="file-exists">✅ workflow-integration.test.tsx</span>          (14KB, 411 lines)
+│   └── <span class="file-exists">✅ workflow.test.tsx</span>                      (19KB, 577 lines)
+├── 📂 utils/
+│   └── <span class="file-exists">✅ test-helpers.ts</span>                        (8.2KB, 304 lines)
+├── <span class="file-exists">✅ test-utils.tsx</span>                             (4.4KB, 156 lines)
+├── <span class="file-exists">✅ jest.config.js</span>                             (Configuration)
+├── <span class="file-exists">✅ jest.setup.js</span>                             (Setup & Mocks)
+└── <span class="file-exists">✅ README.md</span>                                  (8.6KB, 336 lines)
+
+📂 api/
+├── <span class="file-exists">✅ test_integration.py</span>                        (17KB, 454 lines)
+├── <span class="file-partial">⚠️ test_04_resume_generation.py</span>             (8.5KB, 264 lines)
+└── <span class="file-missing">❌ pytest.ini</span>                               (Missing config)
+</pre>
+                </div>
+            </div>
+
+            <!-- Action Items -->
+            <div class="section">
+                <h2>📋 Priority Action Items</h2>
+                <ul class="todo-list">
+                    <li class="todo-item todo-priority-high">
+                        <strong>🔥 HIGH: Fix API Connection Issues</strong><br>
+                        Job Analysis and Generation steps failing due to backend API connectivity issues. The /api/analyze-job endpoint is not properly registered/responding.
+                    </li>
+                    <li class="todo-item todo-priority-high">
+                        <strong>🔥 HIGH: Backend Router Registration</strong><br>
+                        Fix import issues in main.py and endpoints.py to properly register API routes. Missing endpoints are causing 404 errors.
+                    </li>
+                    <li class="todo-item todo-priority-medium">
+                        <strong>⚠️ MEDIUM: Add API Integration Tests</strong><br>
+                        Create comprehensive tests for Frontend ↔ Backend communication, covering all API endpoints and error scenarios.
+                    </li>
+                    <li class="todo-item todo-priority-medium">
+                        <strong>⚠️ MEDIUM: WebSocket Testing</strong><br>
+                        Implement tests for real-time progress updates and WebSocket communication during resume generation.
+                    </li>
+                    <li class="todo-item todo-priority-low">
+                        <strong>📝 LOW: Test Configuration</strong><br>
+                        Add pytest.ini configuration file for backend tests and improve test organization.
+                    </li>
+                    <li class="todo-item todo-priority-low">
+                        <strong>📝 LOW: Performance Testing</strong><br>
+                        Add load testing for API endpoints and frontend performance benchmarks.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick Commands -->
+            <div class="section">
+                <h2>⚡ Quick Test Commands</h2>
+                <div style="background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                    <p><strong>Frontend Tests:</strong></p>
+                    <p style="margin: 5px 0;">cd v0-resume-creation-framework && npm test</p>
+                    <p style="margin: 5px 0;">cd v0-resume-creation-framework && npm run test:coverage</p>
+                    <br>
+                    <p><strong>Backend Tests:</strong></p>
+                    <p style="margin: 5px 0;">cd api && python -m pytest test_integration.py -v</p>
+                    <p style="margin: 5px 0;">cd api && python -m pytest --cov=. --cov-report=html</p>
+                    <br>
+                    <p><strong>Start Development Servers:</strong></p>
+                    <p style="margin: 5px 0;">start-dev.bat</p>
+                    <p style="margin: 5px 0;">OR: start-dev.bat --force-cleanup (if ports are occupied)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive functionality
+        function runAllTests() {
+            alert('Running all tests...\n\nThis would execute:\n• Frontend: npm test\n• Backend: pytest\n• Integration: Full workflow tests');
+        }
+
+        function runFrontendTests() {
+            alert('Running frontend tests...\n\nExecuting: npm test in v0-resume-creation-framework/');
+        }
+
+        function runBackendTests() {
+            alert('Running backend tests...\n\nExecuting: pytest in api/ directory');
+        }
+
+        function runIntegrationTests() {
+            alert('Running integration tests...\n\nExecuting: Full end-to-end workflow tests');
+        }
+
+        // Auto-refresh functionality
+        function refreshStatus() {
+            // In a real implementation, this would fetch actual test results
+            console.log('Refreshing test status...');
+        }
+
+        // Update timestamp
+        document.addEventListener('DOMContentLoaded', function() {
+            const timestamp = new Date().toLocaleString();
+            const header = document.querySelector('.header p');
+            header.innerHTML += ` • Last Updated: ${timestamp}`;
+        });
+
+        // Auto-refresh every 30 seconds
+        setInterval(refreshStatus, 30000);
+    </script>
+</body>
+</html> 

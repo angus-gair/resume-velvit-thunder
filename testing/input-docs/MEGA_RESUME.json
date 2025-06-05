@@ -1,0 +1,534 @@
+{
+
+  "basics": {
+
+    "name": "ANGUS JAMES",
+    "label": "Data Analyst & Business Intelligence Specialist",
+    "image": "",
+    "email": "angus@AJinsights.com.au",
+    "phone": "(02) 8201 3710",
+    "url": "https://www.AJinsights.com.au",
+    "summary": "With a strong background in data and analytics across finance, government, and retail sectors, I've built expertise in transforming complex datasets into clear insights that drive business decisions. My core strengths lie in developing robust data pipelines, creating predictive models, and implementing automated reporting solutions. My experience spans multiple industries including Banking (HSBC, AMEX), FMCG (Woolworths, Domino's Pizza), Media, FinTech, and Political Analytics. I've worked with large datasets for Domino's Pizza, Mastercard & HSBC at transactional level with records exceeding 100 million, and assisted Equifax Credit Bureau at an individual level with more than 25 million records. I excel at translating analytical insights into business-focused solutions that improve performance and efficiency.",
+    "location": {
+
+      "address": "",
+      "postalCode": "",
+      "city": "Sydney",
+      "countryCode": "AU",
+      "region": "NSW"
+    },
+    "profiles": [
+      {
+
+        "network": "LinkedIn",
+        "username": "angus-james",
+        "url": "http://linkedin.com/in/angus-james"
+      }
+    ]
+  },
+  "work": [
+    {
+
+      "name": "AJ Insights",
+      "position": "Founder and Developer",
+      "url": "https://www.AJinsights.com.au",
+      "startDate": "2024-12",
+      "endDate": "Current",
+      "summary": "Founded AJ Insights to empower small businesses with enterprise-grade analytics capabilities. Developed a comprehensive platform that combines CRM, website management, and powerful analytics in one integrated solution, delivered via an intuitive subscription-based service with five key pillars: Digital Presence, Customer Management, Data Management, Analytics, and AI Integration.",
+      "highlights": [
+        "Full-stack development integrating front-end and back-end systems (PostgreSQL, MySQL, Python, React, GraphQL)",
+        "MVP Analytics Engine using Python, Pandas, TensorFlow for advanced data analysis and predictive modelling",
+        "Designed and implemented advanced API integration architecture utilizing RESTful and GraphQL interfaces with JWT authentication, rate limiting, and API Gateway orchestration",
+        "AI-driven functionalities utilizing Anthropic AI, LangChain, and OpenAI API for automated content generation and business analytics",
+        "Implemented comprehensive version control and documentation using Git/GitHub with structured READMEs, architecture diagrams, and project wikis",
+        "Geo-spatial Data Integration with G-NAF data from data.gov.au with ABS demographics at Meshblock level (more granular than postcode)",
+        "Developed CRM system tailored for small businesses with client management, job scheduling, and mobile app for on-the-go management",
+        "Created website services including custom website design, online booking systems, and SEO optimization for local visibility",
+        "Built data & analytics tools providing business performance dashboards, customer behavior analysis, and predictive analytics for business planning",
+        "Implemented modern workflow orchestration enabling small businesses to leverage enterprise-grade data solutions with seamless flow between all components"
+      ]
+    },
+    {
+
+      "name": "WooliesX",
+      "position": "Senior Performance & Optimisation Analyst",
+      "url": "",
+      "startDate": "2024-04",
+      "endDate": "2024-12",
+      "summary": "",
+      "highlights": [
+        "Developed Performance Optimisation Frameworks for Loyalty Rewards, incorporating budget optimisation tools and strategic initiatives",
+        "Data Pipeline and ETL Development for Media Mix Model project for BIGW",
+        "Insights-Driven Projects Using Machine Learning to optimise customer targeting strategies",
+        "Cross-Functional Collaboration with strategy, marketing, product, and data engineering teams",
+        "Business Impact Assessment of nationwide automated rostering system",
+        "BWS Member-Match-Maker (MMM) Decision-Engine Review: Analyzed 14 months of campaign activity across 5.8M members and 1.1M redemptions, confirming £41.5M incremental revenue and 3.27× faster basket growth for redemption baskets",
+        "Big W Rewards 'Active Member' Redefinition: Analyzed 10M+ loyalty members' shopping behavior and built sensitivity framework quantifying changes in visit frequency and spend, resulting in executive approval for revised segmentation",
+        "Marketing Mix Modeling Pipeline: Engineered end-to-end data analytics platform integrating diverse data sources with scalable ETL solution for enhanced customer segmentation and campaign effectiveness measurement",
+        "Retail Loyalty Program Analytics for BIGW: Built analytics framework processing 170M+ transactions with interactive dashboards providing insights on customer loyalty and campaign ROI",
+        "Points Cost Forecast System: Developed enterprise-scale forecast system for $52.3M in annual loyalty costs with 97.8% accuracy using multi-dimensional data model and BigQuery SQL pipeline",
+        "Big W Stanhope Gardens Store Performance Diagnostic: Audited new store performance, identifying loyalty activation as key gap and building sensitivity framework linking improvements to revenue"
+      ]
+    },
+    {
+
+      "name": "Sydney Trains",
+      "position": "Senior Data Analyst",
+      "url": "",
+      "startDate": "2021-06",
+      "endDate": "2023-12",
+      "summary": "",
+      "highlights": [
+        "Developed enterprise KPI dashboards providing a single source of truth for executives, reconciling $70M payroll data",
+        "Implemented data‑quality checks and 80+ DAX measures, cutting reporting run‑time by 60%",
+        "Developed comprehensive SQL codebase and data model to enhance Workforce Planning and Analysis",
+        "Built Machine Learning model to analyse and mitigate excess dwell time at stations",
+        "Developed passenger prediction model based on Waratah train weights",
+        "Reconciled new wage calculations with actual payroll data, verified line items on payslips to two-decimal precision",
+        "Pioneered adoption of analytical tools by leveraging complex SQL queries",
+        "Engineered automated reporting systems for C-level visibility"
+      ]
+    },
+    {
+
+      "name": "Woolworths Group",
+      "position": "Senior Tableau Developer",
+      "url": "",
+      "startDate": "2020-06",
+      "endDate": "2021-06",
+      "summary": "Worked within the Post Implementation Review Dashboard where Woolworths were implementing a national rollout of an automated rostering system. The purpose of this was to reduce the time that Department Managers spent completing rosters for their team. Also assisted with the re-build of the store Planning and Performance Dashboard used by hundreds of users per day as the most used dashboard within Retail Analytics.",
+      "highlights": [
+        "Re‑built the Planning & Performance dashboard in Power BI, serving 300+ users daily across 1,000+ stores",
+        "Maintained data integrity & dashboard stability for informed program rollout decisions",
+        "Assisted store managers, group managers and program stakeholders with dashboard use",
+        "Translated end-user requirements into data schema designs for Data Developers",
+        "Incorporated historical data with major events calendar for YoY performance analysis"
+      ]
+    },
+    {
+
+      "name": "Prospa",
+      "position": "Business Intelligence Analyst",
+      "url": "",
+      "startDate": "2019-12",
+      "endDate": "2020-04",
+      "summary": "A financial technology company (FinTech), BI Analysts support driving the business to be data and outcome focuses. The BI Analysts set up measurement of experiments, analyse trends and segments, define KPIs and present their findings to a wide range of stakeholders. They support data driven thinking and action in organisation.",
+      "highlights": [
+        "Implemented data-driven strategies that optimised business performance, leading to a 15% increase in revenue and a 10% reduction in operating costs",
+        "Conducted experiments to analyse customer behaviour and trends",
+        "Developed dashboards and scenario modelling with Tableau across marketing, operations, sales and finance",
+        "Utilized Snowflake, Databricks (Hive SQL and Python), and Azure Cloud Services within CI/CD pipelines",
+        "Developed analytical frameworks for amortization of one-off fees and default rate monitoring"
+      ]
+    },
+    {
+
+      "name": "Mastercard",
+      "position": "Analytics and Tableau Consultant",
+      "url": "",
+      "startDate": "2019-08",
+      "endDate": "2019-12",
+      "summary": "",
+      "highlights": [
+        "Developed and executed a comprehensive data analysis strategy, achieving a 15% increase in customer retention",
+        "Performed regression testing to ensure consistency between data models",
+        "Performed post-campaign analysis to provide insights that increased incremental engagement",
+        "Transformed analytical output into actionable insights for internal stakeholders"
+      ]
+    },
+    {
+
+      "name": "Equifax",
+      "position": "Data Scientist (Client Analytics -- Behavioural)",
+      "url": "",
+      "startDate": "2016-09",
+      "endDate": "2019-08",
+      "summary": "This is a global information solutions company that uses unique data, innovative analytics, technology and industry expertise to power organisations and individuals around the world. This included transforming knowledge into insights that helped make more informed and strategic business decisions.",
+      "highlights": [
+        "Created 13 predictive models identifying voter intention for ACTU, achieving up to 3.9x performance uplift verified through live telephone polling",
+        "Successfully adapted store location model framework for international markets including New Zealand, Netherlands, and France",
+        "Built propensity models for American Express Platinum Cards with 1.8x uplift over previous direct mailing campaigns",
+        "Led a team during transition to agile methodology, increasing project completion rates within timeline and budget",
+        "Formulated team vision and objectives aligned with business strategy; assisted with team members' career management",
+        "Conducted customer profiling for Credit Corp Personal Loans, analyzing 1.4 million Bureau Credit enquiries to identify top competitors by customer profiles"
+      ]
+    },
+    {
+
+      "name": "SocietyOne",
+      "position": "Business Analyst",
+      "url": "",
+      "startDate": "2015-10",
+      "endDate": "2016-09",
+      "summary": "SocietyOne is an Australian FinTech company that pioneered peer-to-peer lending in the country. It connects investors directly with creditworthy borrowers through its digital platform, offering personal loans with competitive rates while providing an alternative to traditional banking institutions.",
+      "highlights": [
+        "Developed BI and Reporting capability",
+        "Wrote and implemented complex SQL queries as part of the ETL process",
+        "Worked within a small team that drove data strategy",
+        "Built Data Marts for reporting",
+        "Tested data by querying tables to ensure accuracy between data layers",
+        "Wrote queries for marketing reporting including direct mail campaigns and board level reporting"
+      ]
+    },
+    {
+
+      "name": "MediaCom",
+      "position": "Data Analyst",
+      "url": "",
+      "startDate": "2013-04",
+      "endDate": "2015-11",
+      "summary": "Business Science provides analytical services that are based on econometrics and include forecasting, budget setting and allocation, media-mix modelling for measuring campaign ROIs and optimisation tools.",
+      "highlights": [
+        "Liaised with senior modelers in the development and testing of statistical models",
+        "Determined incremental sales achieved at every level of spend for each channel",
+        "Designed and implemented new reporting system to automate client ready reports",
+        "Produced insights and actionable recommendations from model analysis",
+        "Translated marketing metrics into actionable strategies for media planning"
+      ]
+    },
+    {
+
+      "name": "OMD",
+      "position": "Data Analyst",
+      "url": "",
+      "startDate": "2012-07",
+      "endDate": "2013-03",
+      "summary": "BrandScience is Omnicom Media Group's (OMD) business and marketing effectiveness consultancy specializes in understanding ROI from different channels and different marketing activity.",
+      "highlights": [
+        "Investigated variable dynamics, seasonality and trends within the data",
+        "Managed feasibility analysis, basic top line statistical and model robustness",
+        "Determined and extracted key outputs of econometric models",
+        "Applied statistical analysis techniques including Regression, Population Analysis, ANOVA",
+        "Used machine learning methods including GLMs, Gradient Boosted Machines, and clustering"
+      ]
+    }
+  ],
+  "volunteer": [],
+  "education": [
+    {
+
+      "institution": "Macquarie University",
+      "url": "",
+      "area": "Economics & Marketing",
+      "studyType": "Bachelor of Commerce",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": []
+    },
+    {
+
+      "institution": "North Sydney Institute of TAFE",
+      "url": "",
+      "area": "Marketing",
+      "studyType": "Diploma of Business",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "awards": [],
+  "certificates": [
+    {
+
+      "name": "Data Manipulation in Python",
+      "date": "2024-04",
+      "issuer": "Udemy",
+      "url": ""
+    },
+    {
+
+      "name": "Computing in Python I: Fundamentals and Procedural Programming",
+      "date": "2020-04",
+      "issuer": "Georgia Institute of Technology",
+      "url": ""
+    },
+    {
+
+      "name": "Computing in Python II: Control Structures",
+      "date": "2020-04",
+      "issuer": "Georgia Institute of Technology",
+      "url": ""
+    },
+    {
+
+      "name": "Predictive Modelling Using SAS InMemory Statistics Course",
+      "date": "2017-05",
+      "issuer": "SAS",
+      "url": ""
+    },
+    {
+
+      "name": "Predictive Modelling Using SAS High-Performance Analytics Procedures Course",
+      "date": "2017-04",
+      "issuer": "SAS",
+      "url": ""
+    }
+  ],
+  "publications": [],
+  "skills": [
+    {
+
+      "name": "Data Analysis & BI",
+      "level": "Advanced",
+      "keywords": [
+        "Advanced SQL",
+        "Power BI",
+        "Tableau",
+        "Python",
+        "DAX",
+        "PowerQuery M",
+        "Data Warehousing",
+        "ETL Processes",
+        "Large Datasets (100M+ records)"
+      ]
+    },
+    {
+
+      "name": "Forecasting & Predictive Modelling",
+      "level": "Advanced",
+      "keywords": [
+        "Propensity models",
+        "Trend analyses",
+        "GLMs",
+        "Gradient Boosted Machines",
+        "Clustering techniques",
+        "Time series analysis and forecasting",
+        "A/B testing and experimental design",
+        "Feature engineering and model optimisation",
+        "Model deployment and monitoring"
+      ]
+    },
+    {
+
+      "name": "Stakeholder Engagement",
+      "level": "Advanced",
+      "keywords": [
+        "Requirements gathering",
+        "User story development",
+        "Cross-department collaboration",
+        "Data storytelling and executive presentations",
+        "Technical documentation and knowledge sharing",
+        "Training and mentoring junior analysts"
+      ]
+    },
+    {
+
+      "name": "Reporting & Visualisation",
+      "level": "Advanced",
+      "keywords": [
+        "Dashboards",
+        "Automated reports",
+        "KPI frameworks",
+        "D3.js",
+        "Chart.js",
+        "Matplotlib",
+        "Seaborn",
+        "Plotly",
+        "ggplot2",
+        "Shiny dashboards",
+        "Dashboard design principles",
+        "Data storytelling"
+      ]
+    },
+    {
+
+      "name": "Project Delivery & Agile",
+      "level": "Advanced",
+      "keywords": [
+        "JIRA",
+        "Confluence",
+        "CI/CD principles",
+        "GIT-based version control",
+        "Agile methodology",
+        "Sprint planning",
+        "Team leadership",
+        "Cross-functional collaboration",
+        "Project management"
+      ]
+    },
+    {
+
+      "name": "Data Quality & Governance",
+      "level": "Advanced",
+      "keywords": [
+        "Validation",
+        "Reconciliation",
+        "Integrity checks",
+        "EDW environments",
+        "Data documentation",
+        "Process optimization",
+        "Cost-benefit analysis",
+        "ROI modeling",
+        "Performance measurement"
+      ]
+    },
+    {
+
+      "name": "Technical Skills",
+      "level": "Advanced",
+      "keywords": [
+        "SQL",
+        "Python",
+        "R",
+        "SAS",
+        "Tableau",
+        "Power BI",
+        "QlikView",
+        "Excel",
+        "SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Cassandra",
+        "SSIS",
+        "GCP",
+        "Azure Cloud",
+        "AWS",
+        "Hadoop",
+        "Spark",
+        "Airflow",
+        "Git",
+        "Docker",
+        "TensorFlow",
+        "Scikit-learn",
+        "XGBoost"
+      ]
+    },
+    {
+
+      "name": "Cloud Technologies",
+      "level": "Advanced",
+      "keywords": [
+        "AWS services (S3, RDS, Redshift, Lambda, SageMaker)",
+        "Azure services (Azure SQL, Azure ML, Power BI Service)",
+        "Google Cloud Platform",
+        "Docker containers",
+        "Jupyter notebooks",
+        "Shell scripting",
+        "Process automation"
+      ]
+    },
+    {
+
+      "name": "Industry Knowledge",
+      "level": "Advanced",
+      "keywords": [
+        "Retail & E-commerce analytics",
+        "Transportation operations analysis",
+        "Financial services risk modeling",
+        "Customer segmentation",
+        "Loyalty program optimization",
+        "Marketing campaign optimization",
+        "Demand forecasting",
+        "Price elasticity analysis"
+      ]
+    }
+  ],
+  "languages": [
+    {
+
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+
+      "name": "Geographic Information Systems",
+      "keywords": [
+        "G-NAF datasets",
+        "Geospatial visualization",
+        "Meshblock-level analysis"
+      ]
+    },
+    {
+
+      "name": "Data Engineering",
+      "keywords": [
+        "Data pipeline architecture",
+        "ETL processes",
+        "Data warehousing"
+      ]
+    }
+  ],
+  "references": [],
+  "projects": [
+    {
+
+      "name": "PCM - Productivity Costing Model (Sydney Trains)",
+      "startDate": "2021",
+      "endDate": "2023",
+      "description": "By analyzing operational changes and decisions at each layer, the model offers an end-to-end view of cost accrual, providing insights not necessarily available in existing payroll functions or reports. It delivers a holistic and detailed look at when and where individual costs are incurred, enabling greater transparency around timetable decisions and associated servicing.",
+      "highlights": [
+        "Scope: ~1,400 drivers and guards, tracking wage payments, penalties, entitlements per Enterprise Agreement",
+        "Data Model: Master (6–12-month View), DWTT (6-week View), Period (2-week), Daily (1-day), Actual (Costed by Payroll)",
+        "Impact: In FY21 (June–December), about $15 million (~7% of total driver/guard labour costs) were related to excess shifts and extended hours",
+        "Implemented over 80 coded pay rules from a 130-page Enterprise Agreement",
+        "Reconciled $70M in wages against actual Payroll data with line-item verification to two-decimal precision",
+        "Built strong relationships with key stakeholders from Train Crewing, Payroll, and ICT to extract specialized knowledge"
+      ],
+      "url": ""
+    },
+    {
+
+      "name": "Passenger Weight Predictions (Sydney Trains)",
+      "startDate": "2022",
+      "endDate": "2023",
+      "description": "Developed a machine learning model to predict passenger numbers based on Waratah train weights. This was particularly valuable during fare-free travel initiatives introduced as part of Protected Industrial Action in 2022 when Opal card readers were non-operational.",
+      "highlights": [
+        "Created a predictive model that accurately estimated passenger numbers during periods when traditional counting methods were unavailable",
+        "Built a comprehensive Git repository documenting the entire process including data ingestion, modeling steps, and code versioning",
+        "Uncovered an additional 4.5 million passengers during periods with non-operational Opal card readers",
+        "Implemented rigorous validation methodology to ensure prediction accuracy"
+      ],
+      "url": ""
+    },
+    {
+
+      "name": "Post Implementation Review - Automated Rostering (Woolworths)",
+      "startDate": "2020",
+      "endDate": "2021",
+      "description": "Woolworths implemented a nationwide automated rostering system. Department managers typically spent ~8 hours a week doing rosters, and with 11 departments per store (88 hours per store weekly) and over 1,000 Woolworths stores nationwide, the objective was to reduce this administrative workload.",
+      "highlights": [
+        "Dashboard Purpose: Evaluate the effectiveness of the auto-scheduler in matching published rosters to forecast labour demand",
+        "Created multi-level dashboards for Store Managers, Group Managers, and Program Stakeholders",
+        "Dashboard became the 'source of truth' for program performance"
+      ],
+      "url": ""
+    },
+    {
+
+      "name": "Domino's New Store Model (Equifax)",
+      "startDate": "2016",
+      "endDate": "2019",
+      "description": "Developed a dataset combining household demographics, commercial demographics, and business sales data. Created new variables (average distance of delivery, cost of goods, breakeven distance) and built models forecasting pickup sales and delivery sales.",
+      "highlights": [
+        "Provided reports identifying the top 100 best new store locations",
+        "Domino's Australia validated the forecasts with 70-80% of new store sales falling within the forecasted range",
+        "Built the 'Delivery Distances Dashboard' for detailed operational performance views with territory visualization and heat maps",
+        "Successfully rolled out the framework for Domino's New Zealand, Netherlands and France",
+        "As Lead Data Scientist, facilitated fortnightly project update meetings and guided the team through complex analyses",
+        "Collaborated with marketing, head of franchise development, mapping analysts and project development teams"
+      ],
+      "url": ""
+    },
+    {
+
+      "name": "ACTU Voter Models (Equifax)",
+      "startDate": "2016",
+      "endDate": "2019",
+      "description": "Created 13 models that identified voter intention (ALP, LNP, One Nation, etc.) and the top influential issues for each individual (climate change, economic management, immigration, etc.) for the Australian Labor Party.",
+      "highlights": [
+        "Models were used for targeted campaigning via direct mail, telephone, and door-knocking",
+        "The Greens model had the largest uplift of 3.9x, verified by a live telephone poll conducted by ReachTel",
+        "Organized junior analysts in collating data from various sources into a single table for model building",
+        "Implemented rigorous Quality Control (QC) to ensure data accuracy",
+        "Successfully delivered a single data model representing every household in Australia (approximately 10 million)",
+        "Managed documentation and cataloging code scripts via Git for SQL and R languages"
+      ],
+      "url": ""
+    }
+  ]
+}

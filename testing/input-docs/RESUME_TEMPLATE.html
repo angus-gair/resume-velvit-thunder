@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!-- USE AS A GUIDE. YOU MAY NEED ADD ADDITIONAL POINTS OR REMOVE POINTS -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angus Gair Resume - Data Analyst</title>
+  <style>
+    /* Base Styles */
+    :root {
+      --accent-color: #2079c7;
+      --font-family: 'Open Sans', Arial, sans-serif;
+      --font-size-body: 9pt;
+      --font-size-heading: 11pt;
+      --font-size-name: 36pt;
+      --font-weight-normal: 300;
+      --font-weight-bold: 600;
+      --line-height: 1.4;
+      --padding: 0.65in;
+      --spacing-small: 4pt;
+      --spacing-medium: 8pt;
+      --spacing-large: 24pt;
+      --bullet-char: '•';
+      --color-text: #000;
+    }
+
+    @font-face {
+      font-weight: 300;
+      font-family: "Open Sans";
+      font-style: normal;
+      src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+    }
+
+    @font-face {
+      font-weight: 600;
+      font-family: "Open Sans";
+      font-style: normal;
+      src: url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      word-break: break-word;
+    }
+
+    body {
+      color: var(--color-text);
+      font-weight: var(--font-weight-normal);
+      font-size: var(--font-size-body);
+      font-family: var(--font-family);
+      line-height: var(--line-height);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    a, a:hover, a:visited, a:focus {
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .page {
+      padding: var(--padding);
+      width: 8.5in;
+      height: 11in;
+      background-color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Header Styles */
+    .header {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-large);
+    }
+
+    .header-primary {
+      flex: 0 0 65%;
+    }
+
+    .header-secondary {
+      flex: 0 0 30%;
+      text-align: right;
+    }
+
+    .full-name {
+      color: var(--accent-color);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-name);
+      line-height: 1;
+      margin-bottom: var(--spacing-small);
+    }
+
+    .title {
+      font-weight: var(--font-weight-bold);
+      font-size: calc(var(--font-size-heading) + 1pt);
+      margin-bottom: var(--spacing-medium);
+    }
+
+    .contact-details > div {
+      margin-bottom: var(--spacing-small);
+    }
+
+    /* Content Styles */
+    .content {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 10%;
+    }
+
+    .col-main {
+      flex: 0 0 60%;
+    }
+
+    .col-aside {
+      flex: 0 0 30%;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: var(--spacing-large);
+    }
+
+    .section-title {
+      text-transform: uppercase;
+      color: var(--accent-color);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-heading);
+      border-bottom: 1px solid var(--accent-color);
+      margin-bottom: var(--spacing-medium);
+      padding-bottom: 2pt;
+    }
+
+    /* Block Styles */
+    .block {
+      margin-bottom: var(--spacing-medium);
+    }
+
+    .block-heading {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-small);
+    }
+
+    .heading-primary {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-heading);
+    }
+
+    .heading-secondary {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-body);
+    }
+
+    .heading-minor {
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-body);
+    }
+
+    .block-content {
+      margin-bottom: var(--spacing-small);
+    }
+
+    /* List Styles */
+    ul {
+      list-style: none;
+      margin-left: 12pt;
+    }
+
+    li {
+      position: relative;
+      margin-bottom: var(--spacing-small);
+      padding-left: 12pt;
+    }
+
+    li:before {
+      content: var(--bullet-char);
+      position: absolute;
+      left: 0;
+      font-weight: var(--font-weight-bold);
+    }
+
+    /* Skills List */
+    .skills-list {
+      column-count: 1;
+    }
+
+    .skill-category {
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--spacing-small);
+      margin-top: var(--spacing-medium);
+    }
+
+    /* Page Numbering - Hidden for single page layout */
+    .page-number {
+      display: none;
+    }
+
+    /* Responsive Print */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      
+      .page {
+        width: 8.5in;
+        height: 11in;
+        box-shadow: none;
+        padding: 0.5in;
+        overflow: hidden;
+      }
+      
+      @page {
+        size: 8.5in 11in;
+        margin: 0;
+      }
+    }
+
+    /* This media query ensures the page displays well on screens */
+    @media screen {
+      body {
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+      }
+      
+      .page {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 8.5in;
+        max-height: 11in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- SINGLE CONTINUOUS PAGE -->
+  <div class="page">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="header-primary">
+        <div class="full-name">ANGUS JAMES</div>
+        <div class="title">Data Analyst &amp; Business Intelligence Specialist</div>
+      </div>
+      <div class="header-secondary">
+        <div class="contact-details">
+          <div>Sydney, NSW</div>
+          <div>(02) 8201 3710</div>
+          <div>angus@AJinsights.com.au</div>
+          <div><a href="https://www.linkedin.com/in/angus-james-g/" target="_blank" rel="noopener">linkedin.com/in/angus-james</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Main Column -->
+      <div class="col-main">
+        <!-- Professional Summary -->
+        <div class="section">
+          <div class="section-title">Professional Summary</div>
+          <div class="block">
+            <div class="block-content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc imperdiet quam a lectus euismod, non aliquet enim dictum. Proin ullamcorper vulputate dolor ut consectetur. Donec in faucibus purus. Nullam ex augue, commodo vel blandit sed, sollicitudin faucibus mauris. Phasellus non felis faucibus, sodales sem id, vehicula lectus. In placerat, odio sit amet porta pellentesque, nisl nulla auctor lorem, ac dictum augue massa sit amet orci.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="section">
+          <div class="section-title">Work Experience</div>
+          
+          <!-- Job 1: AJ Insights -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">AJ Insights</div>
+              <div class="heading-minor">December 2024 - Current</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Founder and Developer</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+          
+          <!-- Job 2: WooliesX -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">WooliesX</div>
+              <div class="heading-minor">April 2024 - December 2024</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Senior Performance &amp; Optimisation Analyst</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+          
+          <!-- Job 3: Sydney Trains -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Sydney Trains</div>
+              <div class="heading-minor">June 2021 - December 2023</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Senior Data Analyst</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div> 
+          
+          <!-- Job 4: Woolworths Group -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Woolworths Group</div>
+              <div class="heading-minor">June 2020 - June 2021</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Senior Tableau Developer</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>  
+            </ul>
+          </div>
+          
+          <!-- Job 5: Prospa -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Prospa</div>
+              <div class="heading-minor">December 2019 - April 2020</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Business Intelligence Analyst</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+          
+          <!-- Job 6: Mastercard -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Mastercard</div>
+              <div class="heading-minor">August 2019 - December 2019</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Analytics and Tableau Consultant</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+          
+          <!-- Job 7: Equifax -->
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Equifax</div>
+              <div class="heading-minor">September 2016 - August 2019</div>
+            </div>
+            <div class="block-heading">
+              <div class="heading-secondary">Data Scientist (Client Analytics)</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="section">
+          <div class="section-title">Key Projects</div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">PLACEHOLDER PROJECT NAME</div>
+            </div>
+            <ul>
+                <li>Point 1</li>
+                <li>Point 2</li>
+                <li>Point 3</li>
+                <li>Point 4</li>
+                <li>Point 5</li>
+            </ul>
+          </div>
+          
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">PLACEHOLDER PROJECT NAME</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+          
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">PLACEHOLDER PROJECT NAME</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">PLACEHOLDER PROJECT NAME</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+          
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">PLACEHOLDER PROJECT NAME</div>
+            </div>
+            <ul>
+              <li>Point 1</li>
+              <li>Point 2</li>
+              <li>Point 3</li>
+              <li>Point 4</li>
+              <li>Point 5</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Column -->
+      <div class="col-aside">
+        <!-- Skills Section -->
+        <div class="section">
+          <div class="section-title">Skills</div>
+          <!-- YOU CAN MODIFY THESE SKILLS -->
+          <div class="skill-category">DATA ANALYSIS &amp; MIGRATION</div>
+          <ul class="skills-list">
+            <li>Advanced SQL</li>
+            <li>Data Quality Management</li>
+            <li>Data Mapping &amp; Migration</li>
+            <li>Legacy System Integration</li>
+            <li>ETL Processes</li>
+            <li>Data Reconciliation</li>
+            <li>Data Pipeline Development</li>
+          </ul>
+          
+          <div class="skill-category">TECHNICAL SKILLS</div>
+          <ul class="skills-list">
+            <li>SQL (Advanced)</li>
+            <li>Power BI &amp; Tableau</li>
+            <li>Data Warehousing</li>
+            <li>Python</li>
+            <li>Git Version Control</li>
+            <li>PostgreSQL &amp; MySQL</li>
+            <li>DAX &amp; PowerQuery</li>
+          </ul>
+          
+          <div class="skill-category">BUSINESS SKILLS</div>
+          <ul class="skills-list">
+            <li>Stakeholder Engagement</li>
+            <li>Requirements Gathering</li>
+            <li>Process Documentation</li>
+            <li>Cross-functional Collaboration</li>
+            <li>Change Management Support</li>
+            <li>Business Process Analysis</li>
+            <li>Technical Communication</li>
+          </ul>
+        </div>
+
+        <!-- Additional Skills Section -->
+        <div class="section">
+          <div class="section-title">Additional Skills</div>
+          
+          <div class="skill-category">DATA VISUALIZATION</div>
+          <ul class="skills-list">
+            <li>Interactive Dashboards</li>
+            <li>Executive Reporting</li>
+            <li>Data Storytelling</li>
+            <li>KPI Development</li>
+            <li>Multi-dimensional Analysis</li>
+          </ul>
+          
+          <div class="skill-category">DATA INTEGRATION</div>
+          <ul class="skills-list">
+            <li>SAP Data Integration</li>
+            <li>API Integration</li>
+            <li>Cloud Data Platforms</li>
+            <li>Data Lake Architecture</li>
+            <li>Schema Design</li>
+          </ul>
+          
+          <div class="skill-category">PREDICTIVE ANALYTICS</div>
+          <ul class="skills-list">
+            <li>Machine Learning Models</li>
+            <li>Propensity Modeling</li>
+            <li>Regression Analysis</li>
+            <li>Clustering Techniques</li>
+            <li>Gradient Boosted Machines</li>
+          </ul>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+          <div class="section-title">Education</div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Bachelor of Commerce</div>
+            </div>
+            <div class="heading-secondary">Macquarie University</div>
+            <div class="heading-minor">Economics &amp; Marketing</div>
+          </div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Diploma of Business</div>
+            </div>
+            <div class="heading-secondary">North Sydney Institute of TAFE</div>
+            <div class="heading-minor">Marketing</div>
+          </div>
+        </div>
+        
+        <!-- Certifications Section -->
+        <div class="section">
+          <div class="section-title">Certifications</div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Predictive Modelling Using SAS InMemory Statistics</div>
+            </div>
+            <div class="heading-minor">SAS</div>
+          </div>
+          <div class="block">
+            <div class="block-heading">
+              <div class="heading-primary">Predictive Modelling Using SAS High-Performance Analytics</div>
+            </div>
+            <div class="heading-minor">SAS</div>
+          </div>
+        </div>
+
+        <!-- Industry Experience Section -->
+        <div class="section">
+          <div class="section-title">Industry Experience</div>
+          <ul class="skills-list">
+            <li>Retail &amp; FMCG (Woolworths, Domino's)</li>
+            <li>Transportation (Sydney Trains)</li>
+            <li>Financial Services (Equifax, HSBC, AMEX)</li>
+            <li>FinTech (Prospa, SocietyOne)</li>
+            <li>Media &amp; Marketing (MediaCom, OMD)</li>
+            <li>Data Analysis &amp; Consulting</li>
+          </ul>
+        </div>
+        
+        <!-- Special Projects Section -->
+        <div class="section">
+          <div class="section-title">AI PLACEHOLDER PROJECT</div>
+          <div class="block-content">
+            <p>SUMMARY PLACEHOLDER</p>
+          </div>
+          <ul>
+            <li>POINT 1</li>
+            <li>POINT 2</li>
+            <li>POINT 3</li>
+            <li>POINT 4</li>
+            <li>POINT 5</li>
+          </ul>
+        </div>
+        
+        <!-- Professional Approach Section -->
+        <div class="section">
+          <div class="section-title">Professional Approach</div>
+          <div class="block-content">
+            <p>I approach data analysis and migration projects with meticulous attention to detail, ensuring data quality throughout the process. My methodology involves thorough stakeholder engagement, comprehensive documentation, rigorous testing, and clear communication of findings. I prioritize translating technical concepts for non-technical audiences to drive business value from data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ </body></html>

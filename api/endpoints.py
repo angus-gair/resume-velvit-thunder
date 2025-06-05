@@ -26,16 +26,15 @@ try:
 except ImportError as e:
     print(f"Warning: Could not import existing modules: {e}")
 
-# Import WebSocket progress functions
-try:
-    from main import send_progress_update, send_completion_update
-except ImportError:
-    # Fallback functions if WebSocket is not available
-    async def send_progress_update(session_id: str, operation: str, progress: int, message: str = "", details: dict = None):
-        pass
+# WebSocket progress functions (defined locally to avoid circular imports)
+async def send_progress_update(session_id: str, operation: str, progress: int, message: str = "", details: dict = None):
+    """Send progress update to WebSocket clients (placeholder - will be enhanced later)"""
+    print(f"Progress [{session_id}]: {operation} - {progress}% - {message}")
     
-    async def send_completion_update(session_id: str, operation: str, success: bool, result: dict = None, error: str = None):
-        pass
+async def send_completion_update(session_id: str, operation: str, success: bool, result: dict = None, error: str = None):
+    """Send completion update to WebSocket clients (placeholder - will be enhanced later)"""
+    status = "SUCCESS" if success else "FAILED"
+    print(f"Completion [{session_id}]: {operation} - {status} - {error or 'OK'}")
 
 # Import our models
 from models import (

@@ -30,8 +30,11 @@ except ImportError as e:
 try:
     from endpoints import router as core_router
     from admin_endpoints import router as admin_router
+    print(f"✅ Successfully imported routers:")
+    print(f"   Core router: {core_router} (prefix: {core_router.prefix}, routes: {len(core_router.routes)})")
+    print(f"   Admin router: {admin_router} (prefix: {admin_router.prefix}, routes: {len(admin_router.routes)})")
 except ImportError as e:
-    print(f"Warning: Could not import endpoint modules: {e}")
+    print(f"❌ Warning: Could not import endpoint modules: {e}")
     core_router = None
     admin_router = None
 
@@ -229,10 +232,20 @@ async def send_completion_update(session_id: str, operation: str, success: bool,
     }, session_id)
 
 # Include routers
+print(f"\n🔧 Including routers in FastAPI app...")
 if core_router:
     app.include_router(core_router)
+    print(f"   ✅ Core router included (prefix: {core_router.prefix})")
+else:
+    print(f"   ❌ Core router not included (is None)")
+    
 if admin_router:
     app.include_router(admin_router)
+    print(f"   ✅ Admin router included (prefix: {admin_router.prefix})")
+else:
+    print(f"   ❌ Admin router not included (is None)")
+
+print(f"   📊 Total app routes after inclusion: {len(app.routes)}")
 
 if __name__ == "__main__":
     uvicorn.run(

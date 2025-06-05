@@ -26,7 +26,7 @@ except ImportError as e:
     print(f"Warning: Could not import existing modules: {e}")
 
 # Import our models
-from .models import (
+from models import (
     EnvironmentVariable, SystemStatus, TestResult
 )
 
