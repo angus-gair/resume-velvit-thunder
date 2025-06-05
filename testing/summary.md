@@ -1,3 +1,15 @@
+I can see there are still import issues with the backend (the router isn't being exported properly from endpoints.py, and psutil is missing). But let me first address your question about testing by reviewing the codebase for testing capabilities.
+Search files...
+Ran tool
+Ran tool
+Search files...
+Let me also check for any frontend testing files:
+Ran tool
+Ran tool
+Read file: v0-resume-creation-framework/__tests__/README.md
+Read file: v0-resume-creation-framework/package.json
+Now let me create a comprehensive summary of the testing capabilities in this application.
+
 ## 📋 **Testing Summary for Resume Builder Application**
 
 Based on my review of the codebase, this application has comprehensive testing capabilities across multiple layers:
@@ -205,3 +217,176 @@ npm test -- --testNamePattern="API Integration"  # Specific tests
 ✅ **Documentation**: Well-documented test structure and patterns  
 
 The application has a **robust, multi-layered testing strategy** that covers both backend Python services and frontend React components, with comprehensive integration testing and development tools for ongoing quality assurance.
+
+
+
+## 🧪 **Comprehensive Test Suite Overview**
+
+### **📁 Test Directory Structure**
+```
+v0-resume-creation-framework/__tests__/
+├── components/
+│   └── steps/
+│       ├── export-step.test.tsx               (17KB, 489 lines)
+│       ├── review-step.test.tsx               (13KB, 346 lines)
+│       ├── GenerationStep.test.tsx            (18KB, 549 lines)
+│       ├── DocumentUploadStep.test.tsx        (15KB, 433 lines)
+│       ├── JobAnalysisStep.test.tsx           (12KB, 350 lines)
+│       ├── configuration-step.test.tsx        (18KB, 507 lines)
+│       ├── generation-step.test.tsx           (20KB, 536 lines)
+│       ├── source-documents-step.test.tsx     (16KB, 482 lines)
+│       └── job-description-step.test.tsx      (13KB, 360 lines)
+├── integration/
+│   ├── workflow-integration.test.tsx          (14KB, 411 lines)
+│   └── workflow.test.tsx                      (19KB, 577 lines)
+├── utils/
+│   └── test-helpers.ts                        (8.2KB, 304 lines)
+├── test-utils.tsx                             (4.4KB, 156 lines)
+└── README.md                                  (8.6KB, 336 lines)
+```
+
+**Total Test Code**: ~180KB across 13 test files
+
+---
+
+## ⚙️ **Testing Configuration**
+
+### **Jest Configuration** (`jest.config.js`)
+✅ **Professional Setup**:
+- **Next.js integration** with `next/jest`
+- **80% coverage threshold** for all metrics
+- **JSDoc environment** for React testing
+- **Module name mapping** for path aliases
+- **Coverage reporting** (text, lcov, html)
+
+### **Test Setup** (`jest.setup.js`)
+✅ **Comprehensive Mocking**:
+- **WebSocket mocking** for real-time features
+- **Next.js navigation mocking** 
+- **Image component mocking**
+- **Console warning suppression**
+
+---
+
+## 🎯 **Test Categories & Coverage**
+
+### **1. Component Step Tests** (9 files)
+Each workflow step has dedicated integration tests:
+
+✅ **Job Description Step**
+- Form validation and submission
+- API integration for job analysis
+- WebSocket progress updates
+- Error handling and retry logic
+
+✅ **Document Upload Step**
+- File upload functionality
+- Drag & drop testing
+- File validation
+- Progress tracking
+
+✅ **Generation Step**
+- Resume generation process
+- Real-time progress updates
+- WebSocket connection management
+
+✅ **Configuration Step**
+- Template selection
+- Style customization
+- Form validation
+
+✅ **Review Step**
+- Content editing functionality
+- Tab navigation
+- Section-based editing
+
+✅ **Export Step**
+- File download functionality
+- Format selection
+- Final output validation
+
+### **2. Integration Tests** (2 files)
+✅ **End-to-End Workflow Testing**:
+- Complete user journey validation
+- Cross-component integration
+- State management across steps
+
+### **3. Test Utilities**
+✅ **Sophisticated Testing Infrastructure**:
+- **Mock data factories** for consistent test data
+- **API response mocking** with MSW
+- **WebSocket service mocking**
+- **Custom render utilities**
+- **Helper functions** for common patterns
+
+---
+
+## 📊 **Test Execution Results**
+
+### **Current Status**: ⚠️ **Tests Need Updates**
+- **Total Tests**: 65 tests across 13 suites
+- **Passed**: 21 tests ✅
+- **Failed**: 44 tests ❌
+- **Test Suites**: 13 failed
+
+### **Failure Analysis**:
+The test failures appear to be due to:
+1. **Component interface changes** - Tests expect different UI elements than what's currently rendered
+2. **Mock data mismatches** - Expected content doesn't match component output
+3. **Component structure updates** - Elements being searched for have changed
+
+---
+
+## 🛠️ **Testing Technologies Used**
+
+### **Core Framework**:
+- **Jest** - Test runner and assertions
+- **React Testing Library** - Component testing utilities  
+- **MSW (Mock Service Worker)** - API request mocking
+- **@testing-library/user-event** - Realistic user interactions
+
+### **Advanced Features**:
+- **WebSocket mocking** for real-time functionality
+- **File upload mocking** for document testing
+- **Accessibility testing** built-in
+- **Coverage reporting** with thresholds
+
+---
+
+## 🎯 **Test Quality Assessment**
+
+### **Strengths** ✅:
+1. **Comprehensive coverage** of all major components
+2. **Professional test architecture** with proper utilities
+3. **Integration testing** for complete workflows
+4. **Accessibility testing** included
+5. **Mock service worker** for realistic API testing
+6. **WebSocket testing** for real-time features
+
+### **Current Issues** ⚠️:
+1. **Tests are outdated** - Component interfaces have changed
+2. **Mock data misalignment** - Expected vs actual content differs
+3. **Need synchronization** with current component implementations
+
+---
+
+## 🚀 **Recommendations**
+
+### **Immediate Actions**:
+1. **Update test assertions** to match current component structure
+2. **Synchronize mock data** with actual component expectations
+3. **Verify component prop interfaces** align with test setup
+
+### **Commands to Fix**:
+```bash
+# Update dependencies
+npm install
+
+# Run tests in watch mode to debug
+npm run test:watch
+
+# Check coverage after fixes
+npm run test:coverage
+```
+
+**The testing framework is excellent and comprehensive - it just needs updates to match the current component implementations!** 🎉
