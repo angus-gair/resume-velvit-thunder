@@ -1,0 +1,22 @@
+{
+  "servers": {
+    "code_quality_analyzer": {
+      "url": "http://localhost:8000/api/v1/analyze",
+      "api_key": "your-api-key-here",
+      "enabled": true,
+      "timeout": 30
+    },
+    "duplicate_detector": {
+      "url": "http://localhost:8001/api/v1/detect-duplicates",
+      "api_key": "your-api-key-here",
+      "enabled": true,
+      "timeout": 60
+    },
+    "dependency_analyzer": {
+      "url": "http://localhost:8002/api/v1/analyze-dependencies",
+      "api_key": "your-api-key-here",
+      "enabled": true,
+      "timeout": 45
+    }
+  }
+}

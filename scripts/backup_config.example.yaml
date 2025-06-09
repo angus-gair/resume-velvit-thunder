@@ -1,0 +1,73 @@
+# Backup and Version Control Configuration
+# Copy this file to backup_config.yaml and adjust as needed
+
+# Directories to include in the backup
+include_dirs:
+  - config
+  - scripts
+  - data
+  - templates
+  - tests
+
+# File patterns to exclude (supports glob patterns)
+exclude_patterns:
+  - "*.pyc"
+  - "__pycache__"
+  - "*.log"
+  - "*.tmp"
+  - "*.swp"
+  - "*.bak"
+  - "*.backup"
+  - ".DS_Store"
+  - "*.sqlite3"
+  - "*.db"
+  - "*.sqlite"
+  - "*.db-journal"
+  - "*.sqlite-journal"
+  - "*.sqlite-wal"
+  - "*.sqlite-shm"
+
+# Database backup configuration (if applicable)
+database:
+  enabled: false
+  type: "sqlite"  # sqlite, postgres, mysql, etc.
+  host: "localhost"
+  port: 5432
+  name: "mydb"
+  user: "user"
+  password: "${DB_PASSWORD}"  # Use environment variables for sensitive data
+  dump_command: "pg_dump -h {host} -p {port} -U {user} -Fc {name} > {output_file}"
+  restore_command: "pg_restore -h {host} -p {port} -U {user} -d {name} {input_file}"
+
+# Git configuration
+git:
+  create_tag: true
+  tag_prefix: "pre-migration"
+  push_tags: false  # Set to true to automatically push tags to remote
+
+# MCP Server integration
+mcp_servers:
+  memory_bank:
+    enabled: true
+    server_name: "memory-bank"  # Name of MCP server in mcp-config.json
+    collection: "backups"      # Collection to store backup metadata in
+
+# Notification settings (optional)
+notifications:
+  email:
+    enabled: false
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    smtp_user: "user@example.com"
+    smtp_password: "${SMTP_PASSWORD}"  # Use environment variables for sensitive data
+    from: "backup@example.com"
+    to: "admin@example.com"
+    on_success: true
+    on_failure: true
+
+# Retention policy (in days)
+retention:
+  keep_daily: 7
+  keep_weekly: 4
+  keep_monthly: 12
+  keep_yearly: 2

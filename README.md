@@ -24,11 +24,171 @@ A production-ready Python script that analyzes job postings using Claude AI to e
 - **Puppeteer** - Web automation and scraping
 - **Playwright** - Advanced web automation
 
+## Backup and Version Control
+
+### Automated Backups
+
+The project includes a robust backup and version control system to ensure data safety during migrations and updates.
+
+#### Features
+
+- **Full Project Backup**: Creates a complete archive of the project files
+- **Git State Documentation**: Captures the current git state including branch and commit hash
+- **Pre-migration Tags**: Creates git tags before major operations
+- **Rollback Documentation**: Generates step-by-step rollback instructions
+- **MCP Integration**: Can store backup metadata in MCP memory banks
+
+#### Usage
+
+1. Configure backup settings (optional):
+   ```bash
+   cp scripts/backup_config.example.yaml scripts/backup_config.yaml
+   # Edit backup_config.yaml as needed
+   ```
+
+2. Run the backup script:
+   ```bash
+   python scripts/backup_and_version_control.py
+   ```
+
+3. For advanced options:
+   ```bash
+   python scripts/backup_and_version_control.py --help
+   ```
+
+#### Configuration
+
+See [backup_config.example.yaml](scripts/backup_config.example.yaml) for all available configuration options, including:
+- Custom include/exclude patterns
+- Database backup settings
+- Git integration options
+- MCP server integration
+- Notification settings
+- Retention policies
+
+## Documentation Migration
+
+We've standardized our documentation structure to improve maintainability and discoverability. See the [Documentation Migration Guide](docs/DOCUMENTATION_MIGRATION_GUIDE.md) for details.
+
+### Key Changes
+
+- New documentation structure:
+  ```
+  docs/
+  ├── api/             # API Reference
+  ├── guides/          # How-to guides
+  ├── architecture/    # System design docs
+  ├── tutorials/       # Step-by-step tutorials
+  ├── examples/        # Code examples
+  ├── resources/       # Additional resources
+  └── changelog/       # Release notes
+  ```
+
+### Migration Tool
+
+We provide a migration tool to help move documentation to the new structure:
+
+```bash
+# Install dependencies
+pip install -r requirements-dev.txt
+
+# Run a dry run to see what will be changed
+python scripts/migrate_docs.py --dry-run
+
+# Run the actual migration
+python scripts/migrate_docs.py
+```
+
+### MCP Integration
+
+The migration process can be tracked using MCP servers. See the [Documentation Migration Guide](docs/DOCUMENTATION_MIGRATION_GUIDE.md#mcp-integration) for details.
+
+## Test Migration
+
+We've standardized our test directory structure to improve maintainability. See the [Test Migration Guide](docs/TEST_MIGRATION_GUIDE.md) for details.
+
+### Key Changes
+
+- New test directory structure:
+  ```
+  tests/
+  ├── unit/           # Unit tests
+  │   ├── backend/    # Backend unit tests
+  │   └── frontend/   # Frontend unit tests
+  ├── integration/    # Integration tests
+  │   ├── backend/
+  │   └── frontend/
+  └── e2e/           # End-to-end tests
+  ```
+
+### Migration Tool
+
+We provide a migration tool to help move tests to the new structure:
+
+```bash
+# Install dependencies
+pip install -r requirements-dev.txt
+
+# Run a dry run to see what will be changed
+python scripts/migrate_tests.py --dry-run
+
+# Run the actual migration
+python scripts/migrate_tests.py
+```
+
+### MCP Integration
+
+The migration process can be tracked using MCP servers. See the [Test Migration Guide](docs/TEST_MIGRATION_GUIDE.md#mcp-integration) for details.
+
+## MCP Server Configuration
+
+MCP (Model Control Protocol) servers allow flexible integration with various AI model providers. See the [MCP Integration Guide](docs/MCP_INTEGRATION.md) for detailed configuration options.
+
+### Quick Start
+
+1. Copy the example configuration:
+   ```bash
+   cp mcp-config.example.json mcp-config.json
+   ```
+
+2. Edit `mcp-config.json` to configure your MCP servers:
+   ```json
+   {
+     "mcpServers": {
+       "local_llm": {
+         "command": "python -m vllm.entrypoints.openai.api_server",
+         "args": ["--model", "mistralai/Mistral-7B-Instruct-v0.2"],
+         "enabled": true,
+         "port": 8000
+       }
+     }
+   }
+   ```
+
+3. Or configure via environment variables:
+   ```bash
+   MCP_SERVER_LOCAL_LLM_COMMAND="python -m vllm.entrypoints.openai.api_server"
+   MCP_SERVER_LOCAL_LLM_ARGS="--model mistralai/Mistral-7B-Instruct-v0.2"
+   MCP_SERVER_LOCAL_LLM_PORT=8000
+   MCP_SERVER_LOCAL_LLM_ENABLED=true
+   ```
+
+4. Reference the MCP server in your provider configuration:
+   ```yaml
+   providers:
+     local_llm:
+       models: ["mistral-7b"]
+       default_model: "mistral-7b"
+       mcp_server: "local_llm"
+   ```
+
 ## Prerequisites
 
-- Python 3.7 or higher
-- Node.js 16 or higher (for MCP servers)
+- Python 3.9 or higher
+- Node.js 18 or higher (for MCP servers)
 - Anthropic API key (get one at https://console.anthropic.com)
+- Docker (recommended for some MCP server configurations)
+- CUDA-capable GPU (recommended for local model inference)
 - Optional: Additional API keys for enhanced MCP functionality
 
 ## Installation
@@ -39,15 +199,60 @@ git clone <repository-url>
 cd resume-velvit-thunder
 ```
 
-2. Install Python dependencies:
+2. Create and activate a virtual environment (recommended):
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install Python dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up MCP servers:
+4. Set up MCP servers:
 ```powershell
+# Windows
 .\setup-mcp.ps1
+
+# Linux/macOS
+chmod +x setup-mcp.sh
+./setup-mcp.sh
 ```
+
+5. Configure MCP servers (see [MCP Integration Guide](docs/MCP_INTEGRATION.md)):
+```bash
+cp mcp-config.example.json mcp-config.json
+# Edit mcp-config.json with your configuration
+```
+
+## Environment Setup
+
+1. Run the interactive setup script to configure your environment variables:
+```bash
+python setup_env.py
+```
+
+2. The script will guide you through entering your API keys and configuration options.
+   - **Required**: Anthropic API key (for Claude AI)
+   - **Recommended**: OpenAI API key (for GPT models)
+   - Optional: Other API keys for additional features
+
+3. The script will create a `.env` file with your configuration.
+
+4. (Optional) If you need to edit the configuration later, you can either:
+   - Run the setup script again
+   - Manually edit the `.env` file
+
+## Verifying Your Setup
+
+After setting up your environment, you can verify that everything is working correctly by running:
+
+```bash
+python -c "from config_manager import ConfigManager; config = ConfigManager().load_config(); print('Configuration loaded successfully!')"
+```
+
+If you see "Configuration loaded successfully!" then your setup is complete.
 
 4. Configure your API keys (see Configuration section below)
 

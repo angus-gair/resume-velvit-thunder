@@ -1,0 +1,103 @@
+# Test Migration Configuration
+# Copy this file to test_migration.yaml and adjust as needed
+
+# Source directories to search for test files
+source_directories:
+  backend:
+    - api
+    - scripts
+    - .  # Root directory
+  frontend:
+    - v0-resume-creation-framework
+    - resume-builder-app
+
+# Test file patterns to match
+test_patterns:
+  python:
+    - 'test_*.py'
+    - '*_test.py'
+    - 'test_*.pyi'
+    - '*_test.pyi'
+  javascript:
+    - '*.test.*'
+    - '*.spec.*'
+    - '**/__tests__/**/*.*'
+    - '**/test/**/*.*'
+
+# Test type detection rules
+test_type_detection:
+  # Keywords that indicate integration tests
+  integration_keywords:
+    - 'integration'
+    - 'e2e'
+    - 'cypress'
+  
+  # Keywords that indicate end-to-end tests
+  e2e_keywords:
+    - 'e2e'
+    - 'cypress'
+    - 'end-to-end'
+  
+  # File patterns that indicate frontend tests
+  frontend_patterns:
+    - '*.tsx'
+    - '*.jsx'
+    - '*.ts'
+    - '*.js'
+    - '*.jsx'
+
+# Target directory structure
+target_structure:
+  unit:
+    backend: 'tests/unit/backend'
+    frontend: 'tests/unit/frontend'
+    shared: 'tests/unit/shared'
+  integration:
+    backend: 'tests/integration/backend'
+    frontend: 'tests/integration/frontend'
+    fullstack: 'tests/integration/fullstack'
+  e2e: 'tests/e2e'
+  mocks: 'tests/__mocks__'
+  fixtures: 'tests/__fixtures__'
+  utils: 'tests/utils'
+
+# MCP Integration
+mcp_integration:
+  enabled: true
+  server_name: 'memory-bank'  # Name of MCP server in mcp-config.json
+  collection: 'test_migrations'  # Collection to store migration metadata in
+
+# File processing options
+processing:
+  # Maximum file size to process (in MB)
+  max_file_size_mb: 10
+  
+  # File encodings to try (in order)
+  encodings:
+    - 'utf-8'
+    - 'latin-1'
+    - 'cp1252'
+  
+  # File extensions to skip
+  skip_extensions:
+    - '.min.js'
+    - '.min.css'
+    - '.map'
+    - '.snap'
+    - '.png'
+    - '.jpg'
+    - '.jpeg'
+    - '.gif'
+    - '.ico'
+    - '.svg'
+    - '.woff'
+    - '.woff2'
+    - '.ttf'
+    - '.eot'
+
+# Logging configuration
+logging:
+  level: 'INFO'  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: 'test_migration.log'
+  max_size_mb: 10
+  backup_count: 5

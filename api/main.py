@@ -10,29 +10,30 @@ import sys
 import json
 import asyncio
 from pathlib import Path
-from typing import Dict, Set
-from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from typing import Dict, Set, Generator, Any
+
+import uvicorn
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import uvicorn
+from sqlalchemy.orm import Session
 
 # Add the parent directory to the Python path to import existing modules
 sys.path.append(str(Path(__file__).parent.parent))
 
-# Import existing modules
-try:
-    from config_manager import ConfigManager
-    from database_utils import DatabaseManager
-except ImportError as e:
-    print(f"Warning: Could not import existing modules: {e}")
+# Import database and dependencies
+from .database.database import init_db, check_db_health, SessionLocal
+from .dependencies import get_db
 
 # Import our endpoints
 try:
     from endpoints import router as core_router
     from admin_endpoints import router as admin_router
     print(f"✅ Successfully imported routers:")
-    print(f"   Core router: {core_router} (prefix: {core_router.prefix}, routes: {len(core_router.routes)})")
-    print(f"   Admin router: {admin_router} (prefix: {admin_router.prefix}, routes: {len(admin_router.routes)})")
+    print(f"   Core router: {core_router} (prefix: {core_router.prefix if hasattr(core_router, 'prefix') else 'N/A'}, "
+          f"routes: {len(core_router.routes) if hasattr(core_router, 'routes') else 'N/A'})")
+    print(f"   Admin router: {admin_router} (prefix: {admin_router.prefix if hasattr(admin_router, 'prefix') else 'N/A'}, "
+          f"routes: {len(admin_router.routes) if hasattr(admin_router, 'routes') else 'N/A'})")
 except ImportError as e:
     print(f"❌ Warning: Could not import endpoint modules: {e}")
     core_router = None
@@ -56,29 +57,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global variables for configuration
-config_manager = None
-db_manager = None
-
 # WebSocket connection manager
 class ConnectionManager:
     def __init__(self):
         self.active_connections: Dict[str, Set[WebSocket]] = {}
-    
+
     async def connect(self, websocket: WebSocket, session_id: str):
         await websocket.accept()
         if session_id not in self.active_connections:
             self.active_connections[session_id] = set()
         self.active_connections[session_id].add(websocket)
         print(f"WebSocket connected for session: {session_id}")
-    
+
     def disconnect(self, websocket: WebSocket, session_id: str):
         if session_id in self.active_connections:
             self.active_connections[session_id].discard(websocket)
             if not self.active_connections[session_id]:
                 del self.active_connections[session_id]
         print(f"WebSocket disconnected for session: {session_id}")
-    
+
     async def send_personal_message(self, message: dict, session_id: str):
         if session_id in self.active_connections:
             disconnected = set()
@@ -88,11 +85,11 @@ class ConnectionManager:
                 except Exception as e:
                     print(f"Error sending message to WebSocket: {e}")
                     disconnected.add(connection)
-            
+
             # Remove disconnected connections
             for connection in disconnected:
                 self.active_connections[session_id].discard(connection)
-    
+
     async def broadcast_message(self, message: dict):
         for session_connections in self.active_connections.values():
             disconnected = set()
@@ -102,7 +99,7 @@ class ConnectionManager:
                 except Exception as e:
                     print(f"Error broadcasting message to WebSocket: {e}")
                     disconnected.add(connection)
-            
+
             # Remove disconnected connections
             for connection in disconnected:
                 session_connections.discard(connection)
@@ -112,38 +109,64 @@ manager = ConnectionManager()
 @app.on_event("startup")
 async def startup_event():
     """Initialize application on startup"""
-    global config_manager, db_manager
     try:
-        config_manager = ConfigManager()
-        db_manager = DatabaseManager()
+        # Initialize the database (creates tables if they don't exist)
+        init_db()
+        print("✅ Database initialized successfully")
+
+        # Initialize other services here if needed
         print("✅ Resume Builder API started successfully")
     except Exception as e:
         print(f"❌ Failed to initialize application: {e}")
+        raise
 
 @app.get("/")
 async def root():
     """Root endpoint"""
-    return {"message": "Resume Builder API", "version": "1.0.0", "status": "running"}
+    return {
+        "message": "Resume Builder API",
+        "version": "1.0.0",
+        "status": "running",
+        "docs": "/docs",
+        "health": "/health"
+    }
 
 @app.get("/health")
 async def health_check():
-    """Health check endpoint"""
+    """
+    Health check endpoint
+
+    Returns:
+        dict: Health status of the API and its dependencies
+    """
     try:
-        # Check database connection
-        db_status = "connected" if db_manager else "disconnected"
-        if db_manager:
-            health_info = db_manager.health_check()
-            db_status = "connected" if health_info.get("status") == "healthy" else "disconnected"
-        
-        # Check configuration
-        config_status = "loaded" if config_manager else "not_loaded"
-        
-        return {
-            "status": "healthy",
-            "database": db_status,
-            "configuration": config_status,
-            "version": "1.0.0"
+        # Check database health
+        db_health = check_db_health()
+        db_status = db_health.get("status", "unknown")
+
+        # Prepare response
+        response = {
+            "status": "healthy" if db_status == "healthy" else "degraded",
+            "version": "1.0.0",
+            "database": {
+                "status": db_status,
+                "tables": db_health.get("tables", {})
+            },
+            "services": {
+                "database": db_status,
+                # Add other services here as they're implemented
+            }
         }
+
+        # If any critical service is down, return 503
+        if db_status != "healthy":
+            return JSONResponse(
+                status_code=503,
+                content=response
+            )
+
+        return response
+
     except Exception as e:
         return JSONResponse(
             status_code=500,
@@ -151,6 +174,30 @@ async def health_check():
                 "status": "unhealthy",
                 "error": str(e),
                 "version": "1.0.0"
+            }
+        )
+
+@app.get("/health/database")
+async def database_health_check():
+    """
+    Detailed database health check endpoint
+
+    Returns:
+        dict: Detailed database health information
+    """
+    try:
+        db_health = check_db_health()
+        status_code = 200 if db_health.get("status") == "healthy" else 503
+        return JSONResponse(
+            status_code=status_code,
+            content=db_health
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={
+                "status": "error",
+                "error": str(e)
             }
         )
 
@@ -166,13 +213,13 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
             "session_id": session_id,
             "timestamp": asyncio.get_event_loop().time()
         }, session_id)
-        
+
         # Keep connection alive and handle incoming messages
         while True:
             try:
                 data = await websocket.receive_text()
                 message = json.loads(data)
-                
+
                 # Handle different message types
                 if message.get("type") == "ping":
                     await manager.send_personal_message({
@@ -186,7 +233,7 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
                         "events": message.get("events", []),
                         "timestamp": asyncio.get_event_loop().time()
                     }, session_id)
-                
+
             except WebSocketDisconnect:
                 break
             except json.JSONDecodeError:
@@ -201,7 +248,7 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
                     "message": str(e),
                     "timestamp": asyncio.get_event_loop().time()
                 }, session_id)
-                
+
     except WebSocketDisconnect:
         pass
     finally:
@@ -235,23 +282,27 @@ async def send_completion_update(session_id: str, operation: str, success: bool,
 print(f"\n🔧 Including routers in FastAPI app...")
 if core_router:
     app.include_router(core_router)
-    print(f"   ✅ Core router included (prefix: {core_router.prefix})")
+    print(f"   ✓ Core router included at {getattr(core_router, 'prefix', '/')}")
 else:
-    print(f"   ❌ Core router not included (is None)")
-    
+    print("   ⚠️  Core router not available")
+
 if admin_router:
-    app.include_router(admin_router)
-    print(f"   ✅ Admin router included (prefix: {admin_router.prefix})")
+    app.include_router(admin_router, prefix="/admin")
+    print("   ✓ Admin router included at /admin")
 else:
-    print(f"   ❌ Admin router not included (is None)")
+    print("   ⚠️  Admin router not available")
 
-print(f"   📊 Total app routes after inclusion: {len(app.routes)}")
+# Example of a protected route using database session
+@app.get("/api/example")
+async def example_route(db: Session = Depends(get_db)):
+    """Example route that uses the database session"""
+    try:
+        # Example query
+        result = db.execute("SELECT 1 as test").fetchone()
+        return {"result": dict(result) if result else {}}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
+# Only run with uvicorn when this file is executed directly
 if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True,
-        log_level="info"
-    ) 
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True, log_level="info")

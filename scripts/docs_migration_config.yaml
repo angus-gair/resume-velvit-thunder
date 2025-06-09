@@ -1,0 +1,240 @@
+# Documentation Migration Configuration
+# This file configures the documentation migration process
+
+# Exclude these directories from the documentation scan
+exclude_dirs:
+  - node_modules
+  - .git
+  - .github
+  - __pycache__
+  - build
+  - dist
+  - venv
+  - env
+  - *.egg-info
+  - .mypy_cache
+  - .pytest_cache
+  - .vscode
+  - .idea
+  - coverage
+  - .coverage
+  - htmlcov
+  - .pytest_cache
+  - .mypy_cache
+  - .hypothesis
+  - .tox
+  - .mypy_cache
+  - .pytest_cache
+  - .eggs
+  - .pytest_cache
+  - .mypy_cache
+  - .hypothesis
+  - .tox
+  - .mypy_cache
+  - .pytest_cache
+  - .eggs
+
+# Exclude these files from the documentation scan
+exclude_files:
+  - package-lock.json
+  - yarn.lock
+  - *.pyc
+  - *.pyo
+  - *.pyd
+  - *.so
+  - *.dll
+  - *.dylib
+  - *.out
+  - *.exe
+  - *.min.js
+  - *.min.css
+  - *.bundle.js
+  - *.bundle.css
+  - *.log
+  - *.sqlite3
+  - *.db
+  - *.sql
+  - *.sqlite
+  - *.db-journal
+  - *.sqlite-journal
+  - *.db-wal
+  - *.sqlite-wal
+  - *.db-shm
+  - *.sqlite-shm
+
+# MCP Integration
+mcp:
+  enabled: true
+  server_name: memory-bank
+  collection: documentation
+
+# Documentation structure
+structure:
+  api: "API Reference"
+  guides: "Guides"
+  architecture: "Architecture"
+  tutorials: "Tutorials"
+  examples: "Examples"
+  resources: "Resources"
+  changelog: "Changelog"
+
+# File patterns to include in the documentation scan
+include_patterns:
+  - "**/*.md"
+  - "**/*.mdx"
+  - "**/*.rst"
+  - "**/*.txt"
+  - "**/*.adoc"
+  - "**/docs/**/*.*"
+  - "**/documentation/**/*.*"
+  - "**/README*"
+  - "**/CHANGELOG*"
+  - "**/CONTRIBUTING*"
+  - "**/LICENSE*"
+  - "**/AUTHORS*"
+  - "**/HISTORY*"
+  - "**/CODE_OF_CONDUCT*"
+  - "**/SECURITY*"
+  - "**/CITATION*"
+  - "**/CONTRIBUTORS*"
+  - "**/MAINTAINERS*"
+  - "**/ROADMAP*"
+  - "**/TODO*"
+
+# File categorization rules
+categorization:
+  api:
+    patterns:
+      - "**/api/**"
+      - "**/reference/**"
+      - "**/*api*"
+      - "**/*reference*"
+  guides:
+    patterns:
+      - "**/guide/**"
+      - "**/tutorial/**"
+      - "**/howto/**"
+      - "**/*guide*"
+      - "**/*tutorial*"
+      - "**/*howto*"
+  architecture:
+    patterns:
+      - "**/arch/**"
+      - "**/design/**"
+      - "**/structure/**"
+      - "**/*arch*"
+      - "**/*design*"
+      - "**/*structure*"
+  examples:
+    patterns:
+      - "**/example*/**"
+      - "**/demo*/**"
+      - "**/sample*/**"
+      - "**/*example*"
+      - "**/*demo*"
+      - "**/*sample*"
+  changelog:
+    patterns:
+      - "**/changelog*"
+      - "**/CHANGELOG*"
+      - "**/HISTORY*"
+      - "**/RELEASES*"
+
+# Templates for generated files
+templates:
+  api: "templates/api.md"
+  guide: "templates/guide.md"
+  tutorial: "templates/tutorial.md"
+  readme: "templates/README.md"
+
+# Link rewriting rules
+link_rewriting:
+  # Map old paths to new paths
+  path_mapping:
+    "docs/old_path/": "docs/new_path/"
+    "old_file.md": "new_location/new_file.md"
+  
+  # Ignore these patterns when rewriting links
+  ignore_patterns:
+    - "http*"  # External URLs
+    - "#*"     # Anchor links
+    - "mailto:*"
+    - "tel:*"
+
+# Post-migration actions
+post_migration:
+  # Generate a sitemap
+  generate_sitemap: true
+  sitemap_path: "docs/sitemap.md"
+  
+  # Update the main README with links to the new documentation
+  update_main_readme: true
+  
+  # Create a redirects file for old documentation paths
+  create_redirects: true
+  redirects_file: "docs/_redirects"
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "docs_migration.log"
+  max_size_mb: 10
+  backup_count: 3
+
+# Validation rules
+validation:
+  # Check for broken links after migration
+  check_links: true
+  
+  # Check for missing images
+  check_images: true
+  
+  # Validate markdown syntax
+  validate_markdown: true
+  
+  # Check for outdated content (files not modified in the last year)
+  check_outdated: true
+  outdated_days: 365
+
+# Documentation generation
+doc_generation:
+  # Generate table of contents for markdown files
+  generate_toc: true
+  
+  # Add edit links to documentation pages
+  add_edit_links: true
+  
+  # Generate a search index
+  generate_search_index: true
+  
+  # Generate PDF versions of documentation
+  generate_pdf: false
+  
+  # Generate EPUB version of documentation
+  generate_epub: false
+
+# MCP Server Configuration
+mcp_servers:
+  memory-bank:
+    type: memory-bank
+    url: "http://localhost:8000"
+    api_key: ${MCP_MEMORY_BANK_API_KEY}
+    
+  taskmaster:
+    type: taskmaster
+    url: "http://localhost:8001"
+    api_key: ${TASKMASTER_API_KEY}
+
+# Backup configuration
+backup:
+  # Create a backup before making changes
+  enabled: true
+  
+  # Directory to store backups
+  directory: ".backups"
+  
+  # Keep this many backups
+  keep_count: 5
+  
+  # Compress backups
+  compress: true

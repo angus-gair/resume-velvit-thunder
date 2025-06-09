@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "local_llm": {
+      "command": "python -m vllm.entrypoints.openai.api_server",
+      "args": [
+        "--model", "TheBloke/Mistral-7B-Instruct-v0.1-GPTQ",
+        "--quantization", "gptq",
+        "--dtype", "float16",
+        "--host", "0.0.0.0"
+      ],
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0",
+        "HUGGING_FACE_HUB_CACHE": "/path/to/huggingface/cache"
+      },
+      "enabled": true,
+      "port": 8000
+    },
+    "openai_compatible": {
+      "command": "docker run -p 8080:8080 tatsu-lab/stanford_alpaca",
+      "enabled": false,
+      "port": 8080
+    },
+    "custom_provider": {
+      "command": "python -m custom_mcp_server",
+      "args": [
+        "--config", "/path/to/custom/config.yaml"
+      ],
+      "env": {
+        "API_KEY": "${CUSTOM_API_KEY}",
+        "LOG_LEVEL": "info"
+      },
+      "enabled": true,
+      "port": 9000
+    }
+  }
+}
