@@ -1,6 +1,6 @@
 # Claude Job Analysis Tool
 
-A production-ready Python script that analyzes job postings using Claude AI to extract key information, clean formatting, and identify required skills and experience. Enhanced with MCP (Model Context Protocol) servers for advanced capabilities.
+A set of Python scripts that analyze job postings using Claude AI to extract key information, clean formatting, and identify required skills and experience. Enhanced with MCP (Model Context Protocol) servers for advanced capabilities.
 
 ## Features
 
